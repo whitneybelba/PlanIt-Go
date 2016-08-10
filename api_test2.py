@@ -9,10 +9,11 @@ import requests
 def defineParams(latitude, longitude):
     params = {}
     params["term"] = "restaurants"
-    params["category_filter"] = "breweries"
+    params["category_filter"] = "french"
     params["ll"] = "{},{}".format(str(latitude), str(longitude))
     params["radius_filter"] = "2000"
-    params["limit"] = "10"
+    params["limit"] = "20"
+    params["sort"] = "1"
 
     return params
 
@@ -39,7 +40,7 @@ def getData(params):
 
 def main():
 
-    locations = [(37.77,-122.41)] #SF
+    locations = [(37.80,-122.27)] #SF
 
     apiData = []
     for latitude, longitude in locations:
@@ -59,14 +60,14 @@ def main():
     # print(json.dumps(apiData, sort_keys=True))
     return apiData[0]
 
-# def get_restaurant_names():
+def get_restaurant_names():
 
 
-#     data = main()
-#     rest_name = data.values()[2][0]['name']
+    data = main()
+    rest_name = data.values()[2][0]['name']
 
-#     print rest_name
-#     return rest_name
+    print rest_name
+    return rest_name
 
 
 

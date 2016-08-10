@@ -4,21 +4,20 @@ import rauth
 import json
 import os
 import requests
-# from pprint import pprint
 
 
-def define_params(location):
+def defineParams(location):
     params = {}
     params["term"] = "restaurants"
-    params["sort"] = 2
-    params["category_filter"] = "breweries"
-    params["location"] = "location"
+    params["category_filter"] = "french"
+    params["location"] = "{}".format(location)
     params["radius_filter"] = "2000"
-    params["limit"] = "10"
+    params["limit"] = "20"
+    params["sort"] = "2"
 
     return params
 
-def get_data(params):
+def getData(params):
 
     # setting up personal Yelp api keys
     consumer_key = os.environ["YELP_CONSUMER_KEY"]
@@ -31,39 +30,46 @@ def get_data(params):
                                   access_token=token,
                                   access_token_secret=token_secret)
 
-    request = session.get("http://api.yelp.com/v2/search", params=params)
+    response = session.get("http://api.yelp.com/v2/search", params=params)
 
     # transforming the data in JSON format
-    data = request.json()
+    data = response.json()
     session.close()
 
     return data
 
-
 def main():
 
-    locations = [("San Francisco, CA")]
+    locations = ["oakland"] #SF
 
-    api_data = []
+    apiData = []
     for location in locations:
-        params = define_params(location)
-        api_data.append(get_data(params))
+        params = defineParams(location)
+        apiData.append(getData(params))
         time.sleep(1.0)
 
-    print len(api_data)
+    #print len(apiData)
 
-    for key in api_data[0].keys():
+    for key in apiData[0].keys():
         print key
 
-    for record in api_data:
-        print record["businesses"]
+    for record in apiData:
+        # print record["businesses"]
         print record["total"]
-        print record["region"]
-    print(json.dumps(api_data, sort_keys=True))
+        # print record["region"]
+    # print(json.dumps(apiData, sort_keys=True))
+    return apiData[0]
 
+# def get_restaurant_names():
+
+
+#     data = main()
+#     rest_name = data.values()[2][0]['name']
+
+#     print rest_name
+#     return rest_name
 
 
 
 if __name__ == '__main__':
     main()
-    

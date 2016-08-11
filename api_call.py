@@ -4,7 +4,10 @@ import os
 
 
 def search_yelp(restaurant_categories, location):
+    """Queries Yelp API using restaurant_category and location as parameters
+        and returns a list of restaurants in that location."""
 
+    # defining the parameters to be used when searching the Yelp API
     params = {}
     params["term"] = "restaurants"
     params["category_filter"] = restaurant_categories
@@ -13,6 +16,7 @@ def search_yelp(restaurant_categories, location):
     params["limit"] = "20"
     params["sort"] = "2"
 
+    ###########################################################################
     # setting up personal Yelp api keys
     consumer_key = os.environ["YELP_CONSUMER_KEY"]
     consumer_secret = os.environ["YELP_CONSUMER_SECRET"]
@@ -25,20 +29,13 @@ def search_yelp(restaurant_categories, location):
                                   access_token_secret=token_secret)
 
     response = session.get("http://api.yelp.com/v2/search", params=params)
-
-    # transforming the data in JSON format
-    data = response.json()
     session.close()
 
-    # locations = ["boulder"]
+    ###########################################################################
+    # transforming the data into JSON format
+    data = response.json()
 
-    # api_data = []
-    # for location in locations:
-    #     # params = define_params(location)
-    #     api_data.append(data)
-    #     time.sleep(1.0)
-
-    # json_object = data[0]
+    time.sleep(1.0)
 
     data_list = data.values()[2]
 
@@ -59,5 +56,3 @@ def search_yelp(restaurant_categories, location):
 # restaurant_list = [d['name'] for d in data_list]
 # print restaurant_list
 
-# if __name__ == '__main__':
-#     main()

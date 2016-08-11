@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
-# from api_test import search_yelp
+from api_call import search_yelp
 
 
 app = Flask(__name__)
@@ -27,10 +27,14 @@ def get_restaurant_choices():
     """Get user's restaurant genre choices."""
 
     restaurant_categories = request.args.getlist("restaurant")
-    results = search_yelp(restaurant_categories)
+
+    restaurant_list = []
+    for restaurant in restaurant_categories:
+        results = search_yelp(restaurant, "boulder")
+        restaurant_list.append(results)
 
     return render_template("results.html",
-                           restaurants=restaurant_categories)
+                           restaurants=restaurant_list)
 
 
 if __name__ == "__main__":

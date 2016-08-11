@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_debugtoolbar import DebugToolbarExtension
+# from api_test import search_yelp
 
 
 app = Flask(__name__)
@@ -21,15 +22,15 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/results", methods=["POST"])
+@app.route("/results", methods=["GET"])
 def get_restaurant_choices():
     """Get user's restaurant genre choices."""
 
-    selected = (request.form.getlist("restaurant"))
+    restaurant_categories = request.args.getlist("restaurant")
+    results = search_yelp(restaurant_categories)
 
-    return render_template(
-        "results.html",
-        restaurants=selected)
+    return render_template("results.html",
+                           restaurants=restaurant_categories)
 
 
 if __name__ == "__main__":

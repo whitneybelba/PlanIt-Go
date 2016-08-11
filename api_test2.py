@@ -7,6 +7,8 @@ import requests
 
 
 def define_params(latitude, longitude):
+    """Defines the parameters that will be passed to the Yelp API."""
+
     params = {}
     params["term"] = "restaurants"
     params["category_filter"] = "asianfusion"
@@ -18,6 +20,7 @@ def define_params(latitude, longitude):
     return params
 
 def get_data(params):
+    """Gets JSON data from the API using OAuth and my API keys."""
 
     # setting up personal Yelp api keys w/ environmental variables
     consumer_key = os.environ["YELP_CONSUMER_KEY"]
@@ -39,6 +42,10 @@ def get_data(params):
     return data
 
 def main():
+    """Takes in the location as lat/long, queries the Yelp API, then appends
+    that response to an empty list. The function returns the zeroeth index of
+    that list which is a JSON object."""
+
 
     locations = [(40.01, -105.27)]   # Boulder
 
@@ -55,11 +62,17 @@ def main():
         # print record["businesses"]
         print record["total"]
         # print record["region"]
-    # print(json.dumps(api_data, sort_keys=True))
+    print(json.dumps(api_data, sort_keys=True))
     return api_data[0]
 
+# binding the JSON object to a variable called data
 data = main()
+# data.values() of the JSON object returns a list of dictionaries
+# I want the 2nd index of that list to get the business info
 data_list = data.values()[2]
+# restaurant_list is a list of the restaurant names from the JSON object
+# based on searching for the 'name' key in the dict and returning the value
+# which is the name of the business/restaurant
 restaurant_list = [d['name'] for d in data_list]
 print restaurant_list
 

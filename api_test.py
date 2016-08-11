@@ -6,7 +6,7 @@ import os
 import requests
 
 
-def defineParams(location):
+def define_params(location):
     params = {}
     params["term"] = "restaurants"
     params["category_filter"] = "french"
@@ -17,7 +17,7 @@ def defineParams(location):
 
     return params
 
-def getData(params):
+def get_data(params):
 
     # setting up personal Yelp api keys
     consumer_key = os.environ["YELP_CONSUMER_KEY"]
@@ -40,35 +40,30 @@ def getData(params):
 
 def main():
 
-    locations = ["oakland"] #SF
 
-    apiData = []
+    locations = ["boulder"]
+
+    api_data = []
     for location in locations:
-        params = defineParams(location)
-        apiData.append(getData(params))
+        params = define_params(location)
+        api_data.append(get_data(params))
         time.sleep(1.0)
 
-    #print len(apiData)
+    # for key in api_data[0].keys():
+    #     print key
 
-    for key in apiData[0].keys():
-        print key
-
-    for record in apiData:
-        # print record["businesses"]
-        print record["total"]
-        # print record["region"]
-    # print(json.dumps(apiData, sort_keys=True))
-    return apiData[0]
-
-# def get_restaurant_names():
+    # for record in api_data:
+    #     # print record["businesses"]
+    #     print record["total"]
+    #     # print record["region"]
+    # # print(json.dumps(api_data, sort_keys=True))
+    return api_data[0]
 
 
-#     data = main()
-#     rest_name = data.values()[2][0]['name']
-
-#     print rest_name
-#     return rest_name
-
+data = main()
+data_list = data.values()[2]
+restaurant_list = [d['name'] for d in data_list]
+print restaurant_list
 
 
 if __name__ == '__main__':

@@ -6,10 +6,10 @@ import os
 import requests
 
 
-def defineParams(latitude, longitude):
+def define_params(latitude, longitude):
     params = {}
     params["term"] = "restaurants"
-    params["category_filter"] = "french"
+    params["category_filter"] = "asianfusion"
     params["ll"] = "{},{}".format(str(latitude), str(longitude))
     params["radius_filter"] = "2000"
     params["limit"] = "20"
@@ -17,9 +17,9 @@ def defineParams(latitude, longitude):
 
     return params
 
-def getData(params):
+def get_data(params):
 
-    # setting up personal Yelp api keys
+    # setting up personal Yelp api keys w/ environmental variables
     consumer_key = os.environ["YELP_CONSUMER_KEY"]
     consumer_secret = os.environ["YELP_CONSUMER_SECRET"]
     token = os.environ["YELP_ACCESS_TOKEN_KEY"]
@@ -40,35 +40,28 @@ def getData(params):
 
 def main():
 
-    locations = [(37.80,-122.27)] #SF
+    locations = [(40.01, -105.27)]   # Boulder
 
-    apiData = []
+    api_data = []
     for latitude, longitude in locations:
-        params = defineParams(latitude, longitude)
-        apiData.append(getData(params))
+        params = define_params(latitude, longitude)
+        api_data.append(get_data(params))
         time.sleep(1.0)
 
-    #print len(apiData)
-
-    for key in apiData[0].keys():
+    for key in api_data[0].keys():
         print key
 
-    for record in apiData:
+    for record in api_data:
         # print record["businesses"]
         print record["total"]
         # print record["region"]
-    # print(json.dumps(apiData, sort_keys=True))
-    return apiData[0]
+    # print(json.dumps(api_data, sort_keys=True))
+    return api_data[0]
 
-def get_restaurant_names():
-
-
-    data = main()
-    rest_name = data.values()[2][0]['name']
-
-    print rest_name
-    return rest_name
-
+data = main()
+data_list = data.values()[2]
+restaurant_list = [d['name'] for d in data_list]
+print restaurant_list
 
 
 if __name__ == '__main__':

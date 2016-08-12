@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Restaurant Genres:</h2>
+<h3>Restaurant Genres:</h3>
 
 <form action="results" method="GET">
 
@@ -173,11 +173,72 @@
         </label>
     </div>
 
+    
+<h3>Types of Bars:</h3>
+
+    <div>
+        <label>
+            <input type="checkbox" name="bar" value="beerbar"> Beer Bars
+        </label>
+    </div>
+
+    <div>
+        <label>
+             <input type="checkbox" name="bar" value="champagne_bars"> Champagne Bars
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" name="bar" value="cocktailbars"> Cocktail Bars
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" name="bar" value="divebars"> Dive Bars
+        </label>
+    </div>
+
+    <div>
+        <label>
+             <input type="checkbox" name="bar" value="gaybars"> Gay Bars
+        </label>
+    </div>
+
+    <div>
+        <label>
+             <input type="checkbox" name="bar" value="lounges"> Lounges
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" name="bar" value="pubs"> Pubs
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" name="bar" value="sportsbars"> Sports Bars
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" name="bar" value="whiskeybars"> Whiskey Bars
+        </label>
+    </div>
+
+    <div>
+        <label>
+            <input type="checkbox" name="bar" value="wine_bars"> Wine Bars
+        </label>
+    </div>
+
     <div>
         <input type="submit">
     </div>
-
-
 </form>
 
 {% endblock %}

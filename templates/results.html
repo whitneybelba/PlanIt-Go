@@ -2,8 +2,27 @@
 {% block content %}
 <body>
 
-<h3>Here are the restaurant choices: {{restaurants}}</h3>
+<h3>Here are the restaurant options:</h3>
+<ul>
+  {% for category in rest_categories %}
+  {% for restaurant in category %}
+    <li>
+        {{ restaurant }}
+    </li>
+  {% endfor %}
+  {% endfor %}
+  </ul>
 
+<h3>Here are the bar options:</h3>
+<ul>
+  {% for category in bar_categories %}
+  {% for bar in category %}
+    <li>
+        {{ bar }}
+    </li>
+  {% endfor %}
+  {% endfor %}
+  </ul>
 </body>
 
 

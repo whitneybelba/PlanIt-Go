@@ -23,18 +23,27 @@ def index():
 
 
 @app.route("/results", methods=["GET"])
-def get_restaurant_choices():
-    """Get user's restaurant genre choices."""
+def get_choices():
+    """Get user's restaurant and bar genre choices."""
 
     restaurant_categories = request.args.getlist("restaurant")
-
+    # iterates over list of categories selected from checkboxes, calls
+    # the search_yelp function for each category, and appends the returned
+    # list of restaurants to a list for all restaurants
     restaurant_list = []
     for restaurant in restaurant_categories:
-        results = search_yelp(restaurant, "boulder")
-        restaurant_list.append(results)
+        rest_results = search_yelp(restaurant, "boulder")
+        restaurant_list.append(rest_results)
+
+    bar_categories = request.args.getlist("bar")
+    bar_list = []
+    for bar in bar_categories:
+        bar_results = search_yelp(bar, "boulder")
+        bar_list.append(bar_results)
 
     return render_template("results.html",
-                           restaurants=restaurant_list)
+                           rest_categories=restaurant_list,
+                           bar_categories=bar_list)
 
 
 if __name__ == "__main__":

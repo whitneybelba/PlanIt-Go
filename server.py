@@ -29,7 +29,7 @@ def get_choices():
     restaurant_categories = request.args.getlist("restaurant")
     # iterates over list of categories selected from checkboxes, calls
     # the search_yelp function for each category, and appends the returned
-    # list of restaurants to a list for all restaurants
+    # list of restaurants in a category to a list for all restaurants
     restaurant_list = []
     for restaurant in restaurant_categories:
         rest_results = search_yelp(restaurant, "boulder")

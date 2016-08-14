@@ -3,13 +3,13 @@ import rauth
 import os
 
 
-def search_yelp(restaurant_categories, location):
+def search_yelp(categories, location):
     """Queries Yelp API using restaurant_category and location as parameters
         and returns a list of restaurants in that location."""
 
     # defining the parameters dict to be used when searching the Yelp API
     params = {}
-    params["category_filter"] = restaurant_categories
+    params["category_filter"] = categories
     params["location"] = "{}".format(location)
     params["radius_filter"] = "2000"
     params["limit"] = "20"

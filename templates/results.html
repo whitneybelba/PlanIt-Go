@@ -23,6 +23,18 @@
   {% endfor %}
   {% endfor %}
   </ul>
+
+  <h3>Here are the activity options:</h3>
+<ul>
+  {% for category in activity_categories %}
+  {% for activity in category %}
+    <li>
+        {{ activity }}
+    </li>
+  {% endfor %}
+  {% endfor %}
+  </ul>
+
 </body>
 
 

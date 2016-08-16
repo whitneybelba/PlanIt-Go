@@ -46,10 +46,13 @@ def search_yelp(categories, location):
     business_list = [d['name'] for d in data_list]
     business_url = [d['url'] for d in data_list]
     business_rating = [d['rating'] for d in data_list]
-    business_location = [d['location'] for d in data_list]
     business_phone = [d['display_phone'] for d in data_list]
-    business_dict = {dict[0]:list(dict[1:]) for dict in zip(business_list,
+    business_location = [d['location'] for d in data_list]
+    business_coordinate = [d['coordinate'] for d in business_location]
+    business_address = [d['display_address'] for d in business_location]
+
+    business_dict = {dict[0]:(dict[1:]) for dict in zip(business_list,
                      business_url, business_rating, business_phone,
-                     business_location)}
+                     business_address, business_coordinate)}
 
     return business_dict

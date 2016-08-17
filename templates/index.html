@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<? foreach ($restaurants as $restaurant) { ?>
+<input id="<?= $restaurant ?>" type="checkbox" name="restaurants[]" value="<?= $restaurant ?>" />
+ <label for="<?= $restaurant ?>"><?= $restaurant ?></label>
+ <br />
+<? } ?>
+
 <h3>Restaurant Genres:</h3>
 
 <form action="results" method="GET">
@@ -73,7 +79,7 @@
 
     <div>
         <label>
-            <input type="checkbox" name="restaurant" value="indian"> Indian
+            <input type="checkbox" name="restaurant" value="indpak"> Indian
         </label>
     </div>
 
@@ -282,12 +288,6 @@
 
     <div>
         <label>
-            <input type="checkbox" name="activity" value="castles"> Castles
-        </label>
-    </div>
-
-    <div>
-        <label>
             <input type="checkbox" name="activity" value="movietheaters"> Cinemas
         </label>
     </div>
@@ -408,12 +408,6 @@
 
     <div>
         <label>
-            <input type="checkbox" name="activity" value="skiing"> Skiing
-        </label>
-    </div>
-
-    <div>
-        <label>
             <input type="checkbox" name="activity" value="spas"> Spas
         </label>
     </div>
@@ -432,12 +426,6 @@
 
     <div>
         <label>
-            <input type="checkbox" name="activity" value="transport"> Transport
-        </label>
-    </div>
-
-    <div>
-        <label>
             <input type="checkbox" name="activity" value="wineries"> Wineries
         </label>
     </div>
@@ -450,7 +438,7 @@
 
     <div>
         <label>
-            Which city would you like to search?
+            Please enter a city and state to search:
             <input type="text" name="location"> 
         </label>
     </div>

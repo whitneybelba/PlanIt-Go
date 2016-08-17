@@ -11,8 +11,8 @@ def search_yelp(categories, location):
     params = {}
     params["category_filter"] = categories
     params["location"] = "{}".format(location)
-    params["radius_filter"] = "2000"
-    params["limit"] = "20"
+    params["radius_filter"] = "40000"
+    params["limit"] = "12"
     params["sort"] = "2"
 
     ###########################################################################
@@ -40,19 +40,4 @@ def search_yelp(categories, location):
     # I want the 2nd index of that list to get the business info
     data_list = data.values()[2]
 
-    # business_list is a list of the business names from the JSON object
-    # based on searching for the 'name' key in the dict and returning the values
-    # which are the names of the business/restaurant
-    business_list = [d['name'] for d in data_list]
-    business_url = [d['url'] for d in data_list]
-    business_rating = [d['rating'] for d in data_list]
-    business_phone = [d['display_phone'] for d in data_list]
-    business_location = [d['location'] for d in data_list]
-    business_coordinate = [d['coordinate'] for d in business_location]
-    business_address = [d['display_address'] for d in business_location]
-
-    business_dict = {dict[0]:(dict[1:]) for dict in zip(business_list,
-                     business_url, business_rating, business_phone,
-                     business_address, business_coordinate)}
-
-    return business_dict
+    return data_list

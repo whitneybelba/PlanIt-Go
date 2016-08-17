@@ -33,8 +33,8 @@ def get_choices():
     # the search_yelp function for each category, and appends the returned
     # list of restaurants in a category to a list for all restaurants
     restaurant_list = []
-    for restaurant in restaurant_categories:
-        rest_results = search_yelp(restaurant, location)
+    for category in restaurant_categories:
+        rest_results = search_yelp(category, location)
         restaurant_list.append(rest_results)
 
     bar_categories = request.args.getlist("bar")
@@ -50,9 +50,9 @@ def get_choices():
         activity_list.append(activity_results)
 
     return render_template("results.html",
-                           rest_categories=restaurant_list,
-                           bar_categories=bar_list,
-                           activity_categories=activity_list)
+                           restaurant_list=restaurant_list,
+                           bar_list=bar_list,
+                           activity_list=activity_list)
 
 
 if __name__ == "__main__":

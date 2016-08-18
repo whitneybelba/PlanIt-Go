@@ -35,7 +35,6 @@ def search_yelp(categories, location):
     data = response.json()
 
     time.sleep(1.0)
-
     # data.values() of the JSON object returns a list of dictionaries
     # I want the 2nd index of that list to get the business info
     data_list = data.values()[2]

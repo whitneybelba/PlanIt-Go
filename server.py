@@ -24,7 +24,7 @@ def index():
 
 @app.route("/results", methods=["GET"])
 def get_choices():
-    """Get user's restaurant and bar genre choices."""
+    """Get user's restaurant, bar and activity genre choices."""
 
     location = request.args.get("location")
 

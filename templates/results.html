@@ -9,7 +9,8 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+{% if restaurant_list[0] %}            
+<h4>Here are some restaurant options you might like:</h4>
 <div class="container">
   <table class="table table-striped">
     <thead>
@@ -22,7 +23,6 @@
     </thead>
     <tbody>
       <tr>
-        {% if restaurant_list %}
         {% for category in restaurant_list %}
         {% for restaurant in category %}
         <td><a href="{{ restaurant['url'] }}" target="_blank">
@@ -35,88 +35,71 @@
       </tr>
         {% endfor %}
         {% endfor %}
-        {% endif %}
     </tbody>
   </table>
 </div>
+{% endif %}
 
-
-<!-- {% if restaurant_list %}
-<h3>Here are some restaurant options you might like:</h3>
-<ul>
-  {% for category in restaurant_list %}
-  {% for restaurant in category %}
-    
-    <li><a href="{{ restaurant['url'] }}" target="_blank">
-        {{ restaurant['name'] }}</a></li>
-    <ul>
-        <li><img src="{{ restaurant['rating_img_url'] }}"></li>
-        <li>Rating: {{ restaurant['rating'] }} 
-            (based on {{ restaurant['review_count']}} reviews)</li> -->
-<!--         <li>{% for location in restaurant['location'] %}
-            {% for cities in location['city'] %}
-            {{ cities }}</li>
-            {% endfor %} 
-            {% endfor %}    -->
-        <!-- <li>Categories: <br>
-            {% for category in restaurant['categories'] %} {{ category[0] }}</li>
+{% if bar_list[0] %}
+<h4>Here are some bar options you might like:</h4>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Bar Name</th>
+        <th>Rating</th>
+        <th>Number of Reviews</th>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for category in bar_list %}
+        {% for bar in category %}
+        <td><a href="{{ bar['url'] }}" target="_blank">
+        {{ bar['name'] }}</a></td>
+        <td><img src="{{ bar['rating_img_url'] }}"></td>
+        <td>{{ bar['review_count']}}</td>
+        {% for category in bar['categories'] %}</li>
+        <td>{{ category[0] }}</td>
             {% endfor %}
-    </ul>
-  {% endfor %}
-  {% endfor %}
-  {% endif %}
-</ul> -->
+      </tr>
+        {% endfor %}
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
 
-{% if bar_list %}
-  <h3>Here are some bar options you might like:</h3>
-<ul>
-  {% for category in bar_list %}
-  {% for bar in category %}
-    
-    <li><a href="{{ bar['url'] }}" target="_blank">
-        {{ bar['name'] }}</a></li>
-    <ul>
-        <li><img src="{{ bar['rating_img_url'] }}"></li>
-        <li>Rating: {{ bar['rating'] }} 
-            (based on {{ bar['review_count']}} reviews)</li>
-<!--         <li>{% for location in bar['location'] %}
-            {% for cities in location['city'] %}
-            {{ cities }}</li>
-            {% endfor %} 
-            {% endfor %}    -->
-        <li>Categories: <br>
-            {% for category in bar['categories'] %} {{ category[0] }}</li>
+{% if activity_list[0] %}
+<h4>Here are some activity options you might like:</h4>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Activity/Business Name</th>
+        <th>Rating</th>
+        <th>Number of Reviews</th>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for category in activity_list %}
+        {% for activity in category %}
+        <td><a href="{{ activity['url'] }}" target="_blank">
+        {{ activity['name'] }}</a></td>
+        <td><img src="{{ activity['rating_img_url'] }}"></td>
+        <td>{{ activity['review_count']}}</td>
+        {% for category in activity['categories'] %}</li>
+        <td>{{ category[0] }}</td>
             {% endfor %}
-    </ul>
-  {% endfor %}
-  {% endfor %}
-  {% endif %}
-</ul>
-
-{% if activity_list %}
-  <h3>Here are some activity options you might like:</h3>
-<ul>
-  {% for category in activity_list %}
-  {% for activity in category %}
-    
-    <li><a href="{{ activity['url'] }}" target="_blank">
-        {{ activity['name'] }}</a></li>
-    <ul>
-        <li><img src="{{ activity['rating_img_url'] }}"></li>
-        <li>Rating: {{ activity['rating'] }} 
-            (based on {{ activity['review_count']}} reviews)</li>
-<!--         <li>{% for location in activity['location'] %}
-            {% for cities in location['city'] %}
-            {{ cities }}</li>
-            {% endfor %} 
-            {% endfor %}    -->
-        <li>Categories: <br>
-            {% for category in activity['categories'] %} {{ category[0] }}</li>
-            {% endfor %}
-    </ul>
-  {% endfor %}
-  {% endfor %}
-  {% endif %}
-</ul>
+      </tr>
+        {% endfor %}
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
 
 {% endblock %}

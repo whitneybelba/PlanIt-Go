@@ -30,8 +30,7 @@
         <td><img src="{{ restaurant['rating_img_url'] }}"></td>
         <td>{{ restaurant['review_count']}}</td>
         {% for category in restaurant['categories'] %}</li>
-        <td>{{ category[0] }}</td>
-            {% endfor %}
+        <td>{{ category[0] }}</td>{% endfor %}
       </tr>
         {% endfor %}
         {% endfor %}
@@ -61,8 +60,7 @@
         <td><img src="{{ bar['rating_img_url'] }}"></td>
         <td>{{ bar['review_count']}}</td>
         {% for category in bar['categories'] %}</li>
-        <td>{{ category[0] }}</td>
-            {% endfor %}
+        <td>{{ category[0] }}</td>{% endfor %}
       </tr>
         {% endfor %}
         {% endfor %}
@@ -92,8 +90,7 @@
         <td><img src="{{ activity['rating_img_url'] }}"></td>
         <td>{{ activity['review_count']}}</td>
         {% for category in activity['categories'] %}</li>
-        <td>{{ category[0] }}</td>
-            {% endfor %}
+        <td>{{ category[0] }}</td> {% endfor %}
       </tr>
         {% endfor %}
         {% endfor %}

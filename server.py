@@ -27,6 +27,7 @@ def get_choices():
     """Get user's restaurant, bar and activity genre choices."""
 
     location = request.args.get("location")
+    radius = request.args.get("radius")
 
     restaurant_categories = request.args.getlist("restaurant")
     # iterates over list of categories selected from checkboxes, calls
@@ -34,19 +35,19 @@ def get_choices():
     # list of restaurants in a category to a list for all restaurants
     restaurant_list = []
     for category in restaurant_categories:
-        rest_results = search_yelp(category, location)
+        rest_results = search_yelp(category, location, radius)
         restaurant_list.append(rest_results)
 
     bar_categories = request.args.getlist("bar")
     bar_list = []
     for bar in bar_categories:
-        bar_results = search_yelp(bar, location)
+        bar_results = search_yelp(bar, location, radius)
         bar_list.append(bar_results)
 
     activity_categories = request.args.getlist("activity")
     activity_list = []
     for activity in activity_categories:
-        activity_results = search_yelp(activity, location)
+        activity_results = search_yelp(activity, location, radius)
         activity_list.append(activity_results)
 
     return render_template("results.html",

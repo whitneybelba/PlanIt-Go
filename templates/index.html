@@ -4,6 +4,9 @@
 <h3>Please choose the types of restaurants you like:</h3>
 <form action="results" method="GET">
         <label>
+            <input type="checkbox" name="restaurant" value="restaurants"> All Restaurants
+        </label>
+        <label>
             <input type="checkbox" name="restaurant" value="newamerican"> American
         </label>
         <label>
@@ -89,6 +92,9 @@
         </label>
 
 <h3>Please choose the types of bars you like:</h3>
+        <label>
+            <input type="checkbox" name="bar" value="bars"> All Bars
+        </label>
         <label>
             <input type="checkbox" name="bar" value="beerbar"> Beer Bars
         </label>
@@ -222,6 +228,15 @@
             Please enter a city and state to search:
             <input type="text" name="location"> 
         </label>
+    </div>
+    <div>How large would you like your search radius to be?
+        <select name="radius">
+            <option value="8000">5 miles</option>
+            <option value="16000">10 miles</option>
+            <option value="24000">15 miles</option>
+            <option value="32000">20 miles</option>
+            <option value="40000">25 miles</option>
+        </select>
     </div>
     <div>
         <input type="submit">

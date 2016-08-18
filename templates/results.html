@@ -1,8 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <body>
 
-{% if restaurant_list %}
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>Rating</th>
+        <th>Number of Reviews</th>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% if restaurant_list %}
+        {% for category in restaurant_list %}
+        {% for restaurant in category %}
+        <td><a href="{{ restaurant['url'] }}" target="_blank">
+        {{ restaurant['name'] }}</a></td>
+        <td><img src="{{ restaurant['rating_img_url'] }}"></td>
+        <td>{{ restaurant['review_count']}}</td>
+        {% for category in restaurant['categories'] %}</li>
+        <td>{{ category[0] }}</td>
+            {% endfor %}
+      </tr>
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+    </tbody>
+  </table>
+</div>
+
+
+<!-- {% if restaurant_list %}
 <h3>Here are some restaurant options you might like:</h3>
 <ul>
   {% for category in restaurant_list %}
@@ -13,20 +52,20 @@
     <ul>
         <li><img src="{{ restaurant['rating_img_url'] }}"></li>
         <li>Rating: {{ restaurant['rating'] }} 
-            (based on {{ restaurant['review_count']}} reviews)</li>
+            (based on {{ restaurant['review_count']}} reviews)</li> -->
 <!--         <li>{% for location in restaurant['location'] %}
             {% for cities in location['city'] %}
             {{ cities }}</li>
             {% endfor %} 
             {% endfor %}    -->
-        <li>Categories: <br>
+        <!-- <li>Categories: <br>
             {% for category in restaurant['categories'] %} {{ category[0] }}</li>
             {% endfor %}
     </ul>
   {% endfor %}
   {% endfor %}
   {% endif %}
-</ul>
+</ul> -->
 
 {% if bar_list %}
   <h3>Here are some bar options you might like:</h3>
@@ -79,8 +118,5 @@
   {% endfor %}
   {% endif %}
 </ul>
-
-</body>
-
 
 {% endblock %}

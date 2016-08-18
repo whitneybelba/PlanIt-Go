@@ -1,448 +1,228 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<? foreach ($restaurants as $restaurant) { ?>
-<input id="<?= $restaurant ?>" type="checkbox" name="restaurants[]" value="<?= $restaurant ?>" />
- <label for="<?= $restaurant ?>"><?= $restaurant ?></label>
- <br />
-<? } ?>
-
-<h3>Restaurant Genres:</h3>
-
+<h3>Please choose the types of restaurants you like:</h3>
 <form action="results" method="GET">
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="newamerican"> American
         </label>
-    </div>
-
-    <div>
         <label>
              <input type="checkbox" name="restaurant" value="asianfusion"> Asian Fusion
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="bbq"> Barbeque
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
              <input type="checkbox" name="restaurant" value="breakfast_brunch"> Breakfast/Brunch
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="caribbean"> Caribbean
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="chinese"> Chinese
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
              <input type="checkbox" name="restaurant" value="cuban"> Cuban
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="hotdogs"> Fast Food
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="french"> French
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
              <input type="checkbox" name="restaurant" value="german"> German
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="gluten_free"> Gluten-Free
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="indpak"> Indian
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
              <input type="checkbox" name="restaurant" value="italian"> Italian
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="japanese"> Japanese
         </label>
-    </div>
-
-    <div>
         <label>
              <input type="checkbox" name="restaurant" value="korean"> Korean
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="restaurant" value="kosher"> Kosher
         </label>
-    </div>
-
-    <div>
         <label>
              <input type="checkbox" name="restaurant" value="latin"> Latin American
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="mediterranean"> Mediterranean
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
              <input type="checkbox" name="restaurant" value="mexican"> Mexican
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="mideastern"> Middle Eastern
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="portuguese"> Portuguese
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="restaurant" value="russian"> Russian
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="spanish"> Spanish
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="steak"> Steakhouse
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="restaurant" value="sushi"> Sushi
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="restaurant" value="thai"> Thai
         </label>
-    </div>
-
-    <div>
         <label>
              <input type="checkbox" name="restaurant" value="vegetarian"> Vegetarian/Vegan
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="restaurant" value="vietnamese"> Vietnamese
         </label>
-    </div>
 
-    
-<h3>Types of Bars:</h3>
-
-    <div>
+<h3>Please choose the types of bars you like:</h3>
         <label>
             <input type="checkbox" name="bar" value="beerbar"> Beer Bars
         </label>
-    </div>
-
-    <div>
         <label>
              <input type="checkbox" name="bar" value="champagne_bars"> Champagne Bars
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="bar" value="cocktailbars"> Cocktail Bars
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="bar" value="divebars"> Dive Bars
         </label>
-    </div>
-
-    <div>
         <label>
              <input type="checkbox" name="bar" value="gaybars"> Gay Bars
         </label>
-    </div>
-
-    <div>
         <label>
              <input type="checkbox" name="bar" value="lounges"> Lounges
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="bar" value="pubs"> Pubs
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="bar" value="sportsbars"> Sports Bars
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="bar" value="whiskeybars"> Whiskey Bars
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="bar" value="wine_bars"> Wine Bars
         </label>
-    </div>
 
-<h3>Types of Activities:</h3>
-
-    <div>
+<h3>What types of activities would you like to do?:</h3>
         <label>
             <input type="checkbox" name="activity" value="galleries"> Art Galleries
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="aquariums"> Aquariums
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="beaches"> Beaches
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="bikerentals"> Bike Rentals
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="gardens"> Botanical Gardens
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="bowling"> Bowling
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="casinos"> Casinos
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="movietheaters"> Cinemas
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="comedyclubs"> Comedy Clubs
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="danceclubs"> Dance Clubs
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="farms"> Farms
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="festivals"> Festivals
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="hiking"> Hiking
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="horsebackriding"> Horseback Riding
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="hotsprings"> Hot Springs
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="jazzandblues"> Jass/Blues Clubs
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="kids_activities"> Kids Activities
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="museums"> Museums
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="musicvenues"> Music Venues
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="opera"> Opera/Ballet
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="parks"> Parks
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="theater"> Performing Arts
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="planetarium"> Planetariums
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="sportsteams"> Professional Sports
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="racetracks"> Racetracks
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="rafting"> Rafting/Kyaking
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="shopping"> Shopping
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="spas"> Spas
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="tea"> Tea Rooms
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="tours"> Tours
-        </label>
-    </div>
-
-    <div>
+        </label><br>
         <label>
             <input type="checkbox" name="activity" value="wineries"> Wineries
         </label>
-    </div>
-
-    <div>
         <label>
             <input type="checkbox" name="activity" value="zoos"> Zoos
-        </label>
-    </div> <br> <br>
-
+        </label> <br> <br>
     <div>
         <label>
             Please enter a city and state to search:
             <input type="text" name="location"> 
         </label>
     </div>
-
     <div>
         <input type="submit">
     </div>

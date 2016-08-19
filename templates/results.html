@@ -10,9 +10,9 @@
 </head>
 <body>
 {% if restaurant_list[0] %}            
-<h4>Here are some restaurant options you might like:</h4>
+<h4>Here are some restaurant<br>options you might like:</h4>
 <div class="container">
-  <table class="table table-striped">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Restaurant Name</th>
@@ -29,7 +29,7 @@
         {{ restaurant['name'] }}</a></td>
         <td><img src="{{ restaurant['rating_img_url'] }}"></td>
         <td>{{ restaurant['review_count']}}</td>
-        {% for category in restaurant['categories'] %}</li>
+        {% for category in restaurant['categories'] %}
         <td>{{ category[0] }}</td>{% endfor %}
       </tr>
         {% endfor %}
@@ -40,9 +40,9 @@
 {% endif %}
 
 {% if bar_list[0] %}
-<h4>Here are some bar options you might like:</h4>
+<h4>Here are some bar options <br>you might like:</h4>
 <div class="container">
-  <table class="table table-striped">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Bar Name</th>
@@ -59,7 +59,7 @@
         {{ bar['name'] }}</a></td>
         <td><img src="{{ bar['rating_img_url'] }}"></td>
         <td>{{ bar['review_count']}}</td>
-        {% for category in bar['categories'] %}</li>
+        {% for category in bar['categories'] %}
         <td>{{ category[0] }}</td>{% endfor %}
       </tr>
         {% endfor %}
@@ -70,9 +70,9 @@
 {% endif %}
 
 {% if activity_list[0] %}
-<h4>Here are some activity options you might like:</h4>
+<h4>Here are some activity <br>options you might like:</h4>
 <div class="container">
-  <table class="table table-striped">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Activity/Business Name</th>
@@ -89,7 +89,7 @@
         {{ activity['name'] }}</a></td>
         <td><img src="{{ activity['rating_img_url'] }}"></td>
         <td>{{ activity['review_count']}}</td>
-        {% for category in activity['categories'] %}</li>
+        {% for category in activity['categories'] %}
         <td>{{ category[0] }}</td> {% endfor %}
       </tr>
         {% endfor %}

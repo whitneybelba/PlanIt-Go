@@ -4,8 +4,8 @@ import os
 
 
 def search_yelp(categories, location, radius):
-    """Queries Yelp API using restaurant_category and location as parameters
-        and returns a list of restaurants in that location."""
+    """Queries Yelp API using restaurant_category, location and radius as
+        parameters and returns a list of businesses in that location."""
 
     # defining the parameters dict to be used when searching the Yelp API
     params = {}
@@ -34,6 +34,7 @@ def search_yelp(categories, location, radius):
     # transforming the data into JSON format and binding to 'data' variable
     data = response.json()
 
+    # rate limit
     time.sleep(1.0)
     # data.values() of the JSON object returns a list of dictionaries
     # I want the 2nd index of that list to get the business info

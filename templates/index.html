@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<title>Travel Activity Planner</title>
+<script type="text/javascript" src="../static/js/scripts.js" async></script>
 
 <h3>Please choose the types of restaurants you like:</h3>
 <form action="results" method="GET">
@@ -128,6 +130,9 @@
 
 <h3>What types of activities would you like to do?:</h3>
         <label>
+            <input type="checkbox" name="activity" value="active"> Top Rated Active Lifestyle
+        </label>
+        <label>
             <input type="checkbox" name="activity" value="galleries"> Art Galleries
         </label>
         <label>
@@ -158,11 +163,17 @@
             <input type="checkbox" name="activity" value="danceclubs"> Dance Clubs
         </label>
         <label>
+            <input type="checkbox" name="activity" value="escapegames"> Escape Games
+        </label>
+        <label>
             <input type="checkbox" name="activity" value="farms"> Farms
         </label>
         <label>
             <input type="checkbox" name="activity" value="festivals"> Festivals
         </label><br>
+        <label>
+            <input type="checkbox" name="activity" value="golf"> Golf
+        </label>
         <label>
             <input type="checkbox" name="activity" value="hiking"> Hiking
         </label>
@@ -179,10 +190,16 @@
             <input type="checkbox" name="activity" value="kids_activities"> Kids Activities
         </label>
         <label>
+            <input type="checkbox" name="activity" value="mini_golf"> Mini Golf
+        </label>
+        <label>
             <input type="checkbox" name="activity" value="museums"> Museums
         </label><br>
         <label>
             <input type="checkbox" name="activity" value="musicvenues"> Music Venues
+        </label>
+        <label>
+            <input type="checkbox" name="activity" value="observatories"> Observatories
         </label>
         <label>
             <input type="checkbox" name="activity" value="opera"> Opera/Ballet
@@ -204,10 +221,32 @@
         </label>
         <label>
             <input type="checkbox" name="activity" value="rafting"> Rafting/Kyaking
+        </label><br>
+        <label>
+            Shopping:
+            <input type="checkbox" name="activity" value="shopping"> General Shopping
         </label>
         <label>
-            <input type="checkbox" name="activity" value="shopping"> Shopping
+            <input type="checkbox" name="activity" value="media"> Books and Music
+        </label>
+        <label>
+            <input type="checkbox" name="activity" value="deptstores"> Department Stores
         </label><br>
+        <label>
+            <input type="checkbox" name="activity" value="fashion"> Fashion
+        </label>
+        <label>
+            <input type="checkbox" name="activity" value="giftshops"> Gift Shops
+        </label>
+        <label>
+            <input type="checkbox" name="activity" value="jewelry"> Jewelry
+        </label><br>
+        <label>
+            <input type="checkbox" name="activity" value="shoppingcenters"> Shopping Centers
+        </label>
+        <label>
+            <input type="checkbox" name="activity" value="toys"> Toy Stores
+        </label>
         <label>
             <input type="checkbox" name="activity" value="spas"> Spas
         </label>

@@ -26,7 +26,7 @@ def index():
 def get_choices():
     """Get user's restaurant, bar and activity genre choices."""
 
-    location = request.args.get("location")
+    location = request.args.get("location") + request.args.get("state")
     radius = request.args.get("radius")
 
     restaurant_categories = request.args.getlist("restaurant")

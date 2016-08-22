@@ -10,7 +10,7 @@ def search_yelp(categories, location, radius):
     # defining the parameters dict to be used when searching the Yelp API
     params = {}
     params["category_filter"] = categories
-    params["location"] = "{}".format(location)
+    params["location"] = location
     params["radius_filter"] = radius
     params["limit"] = "12"
     params["sort"] = "2"

@@ -18,19 +18,22 @@
         <th>Restaurant Name</th>
         <th>Rating</th>
         <th>Number of Reviews</th>
+        <th>City</th>
         <th>Categories</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <!-- data is in the form of dictionaries in a list in a list -->
         {% for category in restaurant_list %}
         {% for restaurant in category %}
+        <!-- restaurant is a ditionary with lists and dicts in it -->
         <td><a href="{{ restaurant['url'] }}" target="_blank">
         {{ restaurant['name'] }}</a></td>
         <td><img src="{{ restaurant['rating_img_url'] }}"></td>
         <td>{{ restaurant['review_count']}}</td>
-        {% for category in restaurant['categories'] %}
-        <td>{{ category[0] }}</td>{% endfor %}
+        <td>{{ restaurant['location']['city'] }}</td>
+        <td>{{ restaurant['category'] }}</td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -48,6 +51,7 @@
         <th>Bar Name</th>
         <th>Rating</th>
         <th>Number of Reviews</th>
+        <th>City</th>
         <th>Categories</th>
       </tr>
     </thead>
@@ -59,8 +63,8 @@
         {{ bar['name'] }}</a></td>
         <td><img src="{{ bar['rating_img_url'] }}"></td>
         <td>{{ bar['review_count']}}</td>
-        {% for category in bar['categories'] %}
-        <td>{{ category[0] }}</td>{% endfor %}
+        <td>{{ bar['location']['city'] }}</td>
+        <td>{{ bar['category'] }}</td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -78,6 +82,7 @@
         <th>Activity/Business Name</th>
         <th>Rating</th>
         <th>Number of Reviews</th>
+        <th>City</th>
         <th>Categories</th>
       </tr>
     </thead>
@@ -89,8 +94,8 @@
         {{ activity['name'] }}</a></td>
         <td><img src="{{ activity['rating_img_url'] }}"></td>
         <td>{{ activity['review_count']}}</td>
-        {% for category in activity['categories'] %}
-        <td>{{ category[0] }}</td> {% endfor %}
+        <td>{{ activity['location']['city'] }}</td>
+        <td>{{ activity['category'] }}</td>
       </tr>
         {% endfor %}
         {% endfor %}

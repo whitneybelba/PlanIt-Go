@@ -34,6 +34,9 @@
         <td>{{ restaurant['review_count']}}</td>
         <td>{{ restaurant['location']['city'] }}</td>
         <td>{{ restaurant['category'] }}</td>
+        {# <!-- <td><a href="/showmap?lat={{restaurant['lat']}}">Show Map</a></td> --> #}
+        {# <!-- <td data-lat="{{ restaurant['lat'] }}" class="triggerMap">Show Map</td> -->#}
+        {# <!-- <td data-id="{{ restaurant['id'] }}" class="triggerMap">Show Map</td> --> #}
       </tr>
         {% endfor %}
         {% endfor %}

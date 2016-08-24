@@ -1,4 +1,3 @@
-import time
 import rauth
 import os
 
@@ -34,8 +33,6 @@ def search_yelp(categories, location, radius):
     # transforming the data into JSON format and binding to 'data' variable
     data = response.json()
 
-    # rate limit
-    time.sleep(1.0)
     # data.values() of the JSON object returns a list of dictionaries
     # I want the 2nd index of that list to get the business info
     data_list = data.values()[2]

@@ -20,6 +20,7 @@
         <th>Number of Reviews</th>
         <th>City</th>
         <th>Categories</th>
+        <th>Add to Trip?</th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
         <td>{{ restaurant['review_count']}}</td>
         <td>{{ restaurant['location']['city'] }}</td>
         <td>{{ restaurant['category'] }}</td>
+        <td><button type="button" class="btn">Add</button></td>
         {# <!-- <td><a href="/showmap?lat={{restaurant['lat']}}">Show Map</a></td> --> #}
         {# <!-- <td data-lat="{{ restaurant['lat'] }}" class="triggerMap">Show Map</td> -->#}
         {# <!-- <td data-id="{{ restaurant['id'] }}" class="triggerMap">Show Map</td> --> #}

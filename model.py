@@ -34,15 +34,15 @@ class Trip(db.Model):
     trip_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
-    name = db.Column(db.String(200))
-    city = db.Column(db.String(40))
-    length = db.Column(db.Integer, nullable=True)
+    name = db.Column(db.String(200), nullable=True)
+    city = db.Column(db.String(40), nullable=False)
+    length = db.Column(db.String(40), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
-    # Define relationship to restaurant, bar, activity and user
-    restaurant = db.relationship("Restaurant", backref=db.backref("trips"))
-    bar = db.relationship("Bar", backref=db.backref("trips"))
-    activity = db.relationship("Activity", backref=db.backref("trips"))
+    # Define relationship to restaurants, bars, activities and user
+    restaurants = db.relationship("Restaurant", backref=db.backref("trips"))
+    bars = db.relationship("Bar", backref=db.backref("trips"))
+    activities = db.relationship("Activity", backref=db.backref("trips"))
     user = db.relationship("User", backref=db.backref("trips"))
 
     def __repr__(self):
@@ -106,8 +106,8 @@ class Activity(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "<Bar bar_id=%s name=%s>" % (self.bar_id,
-                                            self.bar_name)
+        return "<Activity act_id=%s name=%s>" % (self.act_id,
+                                                 self.act_name)
 
                 #################################
                 #        Helper functions       #
@@ -118,10 +118,11 @@ def connect_to_db(app):
     """Connect the database to our Flask app."""
 
     # Configure to use our database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///trips'
-    app.config['SQLALCHEMY_ECHO'] = True
     db.app = app
     db.init_app(app)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres:///trips'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
     db.create_all()
 
 

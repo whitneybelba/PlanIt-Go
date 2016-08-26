@@ -101,13 +101,23 @@ def register_process():
     email = request.form["email"]
     password = request.form["password"]
 
-    new_user = User(email=email, password=password)
+    check = User.query.filter_by(email=email).first()
+    if check:
+        flash("Already a user, please login")
+        return redirect("/login")
 
-    db.session.add(new_user)
-    db.session.commit()
+    else:
+        new_user = User(email=email, password=password)
 
-    flash("User %s added." % email)
-    return redirect("/")
+        db.session.add(new_user)
+        db.session.commit()
+
+        user = User.query.filter_by(email=email).first()
+        email = user.email
+        trips = user.trips
+
+        flash("User %s added." % email)
+        return render_template("user_profile.html", user=email, trips=trips)
 
 
 @app.route('/login', methods=['GET'])
@@ -136,9 +146,23 @@ def login_process():
         return redirect("/login")
 
     session["user_id"] = user.user_id
+    email = user.email
+    trips = user.trips
 
     flash("Logged in")
-    return render_template("user_profile.html")
+    return render_template("user_profile.html", user=email, trips=trips)
+
+
+# @app.route('/login', methods=['GET'])
+# def login_form():
+#     """Show login form."""
+
+#     restaurants = User.query.filter_by(Trip.restaurant).all()
+
+#     return render_template("trip.html",
+#                            restaurants=restaurants,
+#                            bars=bars,
+#                            activities=activities)
 
 
 if __name__ == "__main__":
@@ -146,6 +170,7 @@ if __name__ == "__main__":
     # point that we invoke the DebugToolbarExtension
     app.debug = True
     connect_to_db(app)
+    app.jinja_env.auto_reload = True
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)

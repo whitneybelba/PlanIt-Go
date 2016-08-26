@@ -1,4 +1,4 @@
-"""Models and database functions for Ratings project."""
+"""Models and database functions for Trip Itinerary project."""
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -16,6 +16,8 @@ class User(db.Model):
     user_id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
+    first_name = db.Column(db.String(64), nullable=False)
+    last_name = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=False)
     password = db.Column(db.String(64), nullable=False)
 
@@ -48,8 +50,7 @@ class Trip(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "<Trip trip_id=%s name=%s>" % (self.trip_id,
-                                              self.name)
+        return "%s" % self.name
 
 
 class Restaurant(db.Model):

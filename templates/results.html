@@ -35,7 +35,7 @@
         <td>{{ restaurant['review_count']}}</td>
         <td>{{ restaurant['location']['city'] }}</td>
         <td>{{ restaurant['category'] }}</td>
-        <td><button type="button" class="btn">Add</button></td>
+        <td><button type="button" id="{{ restaurant['id']}}" class="btn">Add {{ restaurant['id'] }}</button></td>
         {# <!-- <td><a href="/showmap?lat={{restaurant['lat']}}">Show Map</a></td> --> #}
         {# <!-- <td data-lat="{{ restaurant['lat'] }}" class="triggerMap">Show Map</td> -->#}
         {# <!-- <td data-id="{{ restaurant['id'] }}" class="triggerMap">Show Map</td> --> #}
@@ -58,6 +58,7 @@
         <th>Number of Reviews</th>
         <th>City</th>
         <th>Categories</th>
+        <th>Add to Trip?</th>
       </tr>
     </thead>
     <tbody>
@@ -70,6 +71,7 @@
         <td>{{ bar['review_count']}}</td>
         <td>{{ bar['location']['city'] }}</td>
         <td>{{ bar['category'] }}</td>
+        <td><button type="button" class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -89,6 +91,7 @@
         <th>Number of Reviews</th>
         <th>City</th>
         <th>Categories</th>
+        <th>Add to Trip?</th>
       </tr>
     </thead>
     <tbody>
@@ -101,6 +104,7 @@
         <td>{{ activity['review_count']}}</td>
         <td>{{ activity['location']['city'] }}</td>
         <td>{{ activity['category'] }}</td>
+        <td><button type="button" class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -112,5 +116,26 @@
 <a href="http://www.yelp.com">
 <img border="10" alt="Yelp" src="../static/img/yelp_powered_btn_dark.png">
 </a></div>
+<script type="text/javascript"> 
+    $(document).ready(function () {
+
+        $("#thrive-boulder").click(function () {
+            $.ajax({
+                url: '/trip/add',
+                data:
+                dataType: 'json',
+                type: 'POST',
+                success: function (result) {
+                  console.log(result)
+                }
+            })
+          })
+        })
+    {% for category in restaurant_list %}
+    {% for restaurant in category %} 
+    // {{ restaurant['id'] }}
+    {% endfor %}
+    {% endfor %}</script>
+
 
 {% endblock %}

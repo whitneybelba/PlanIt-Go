@@ -15,7 +15,10 @@ def load_users():
         row = row.rstrip()
         user_id, first_name, last_name, email, password = row.split("|")
 
-        user = User(email=email,
+        user = User(user_id=user_id,
+                    first_name=first_name,
+                    last_name=last_name,
+                    email=email,
                     password=password)
 
         # We need to add to the session or it won't ever be stored
@@ -30,60 +33,87 @@ def load_trips():
 
     print "Trips"
 
-    for row in open("seed_data/u.item"):
+    for row in open("seed_data/u.trip"):
         row = row.rstrip()
-
         trip_id, name, city, length, user_id = row.split("|")
 
-        trip = Trip(title=title,
-                      released_at=released_at,
-                      imdb_url=imdb_url)
+        trip = Trip(trip_id=trip_id,
+                    name=name,
+                    city=city,
+                    length=length,
+                    user_id=user_id)
 
         # We need to add to the session or it won't ever be stored
-        db.session.add(movie)
-
-        # provide some sense of progress
-        if i % 100 == 0:
-            print i
+        db.session.add(trip)
 
     # Once we're done, we should commit our work
     db.session.commit()
 
 
-def load_ratings():
-    """Load ratings from u.data into database."""
+def load_restaurants():
+    """Load restaurants from u.restaurant into database."""
 
-    print "Ratings"
+    print "Restaurants"
 
-    for i, row in enumerate(open("seed_data/u.data")):
+    for row in open("seed_data/u.restaurant"):
         row = row.rstrip()
+        rest_id, rest_name, rest_lat, rest_long, rest_city, trip_id = row.split("|")
 
-        user_id, movie_id, score, timestamp = row.split("\t")
-
-        user_id = int(user_id)
-        movie_id = int(movie_id)
-        score = int(score)
-
-        # We don't care about the timestamp, so we'll ignore this
-
-        rating = Rating(user_id=user_id,
-                        movie_id=movie_id,
-                        score=score)
+        restaurant = Restaurant(rest_id=rest_id,
+                                rest_name=rest_name,
+                                rest_lat=rest_lat,
+                                rest_long=rest_long,
+                                rest_city=rest_city,
+                                trip_id=trip_id)
 
         # We need to add to the session or it won't ever be stored
-        db.session.add(rating)
+        db.session.add(restaurant)
 
-        # provide some sense of progress
-        if i % 1000 == 0:
-            print i
+    # Once we're done, we should commit our work
+    db.session.commit()
 
-            # An optimization: if we commit after every add, the database
-            # will do a lot of work committing each record. However, if we
-            # wait until the end, on computers with smaller amounts of
-            # memory, it might thrash around. By committing every 1,000th
-            # add, we'll strike a good balance.
 
-            db.session.commit()
+def load_bars():
+    """Load bars from u.bar into database."""
+
+    print "Bars"
+
+    for row in open("seed_data/u.bar"):
+        row = row.rstrip()
+        bar_id, bar_name, bar_lat, bar_long, bar_city, trip_id = row.split("|")
+
+        bar = Bar(bar_id=bar_id,
+                  bar_name=bar_name,
+                  bar_lat=bar_lat,
+                  bar_long=bar_long,
+                  bar_city=bar_city,
+                  trip_id=trip_id)
+
+        # We need to add to the session or it won't ever be stored
+        db.session.add(bar)
+
+    # Once we're done, we should commit our work
+    db.session.commit()
+
+
+def load_activities():
+    """Load activities from u.activity into database."""
+
+    print "Activities"
+
+    for row in open("seed_data/u.activity"):
+        row = row.rstrip()
+        act_id, act_name, act_lat, act_long, act_city, trip_id = row.split("|")
+
+        activity = Activity(act_id=act_id,
+                            act_name=act_name,
+                            act_lat=act_lat,
+                            act_long=act_long,
+                            act_city=act_city,
+                            trip_id=trip_id)
+
+        # We need to add to the session or it won't ever be stored
+        db.session.add(activity)
 
     # Once we're done, we should commit our work
     db.session.commit()
@@ -107,6 +137,8 @@ if __name__ == "__main__":
     db.create_all()
 
     load_users()
-    load_movies()
-    load_ratings()
+    load_trips()
+    load_restaurants()
+    load_bars()
+    load_activities()
     set_val_user_id()

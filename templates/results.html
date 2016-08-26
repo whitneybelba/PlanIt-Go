@@ -116,26 +116,26 @@
 <a href="http://www.yelp.com">
 <img border="10" alt="Yelp" src="../static/img/yelp_powered_btn_dark.png">
 </a></div>
-<script type="text/javascript"> 
-    $(document).ready(function () {
+// <script type="text/javascript"> 
+//     $(document).ready(function () {
 
-        $("#thrive-boulder").click(function () {
-            $.ajax({
-                url: '/trip/add',
-                data:
-                dataType: 'json',
-                type: 'POST',
-                success: function (result) {
-                  console.log(result)
-                }
-            })
-          })
-        })
-    {% for category in restaurant_list %}
-    {% for restaurant in category %} 
+//         $("#thrive-boulder").click(function () {
+//             $.ajax({
+//                 url: '/trip/add',
+//                 data:
+//                 dataType: 'json',
+//                 type: 'POST',
+//                 success: function (result) {
+//                   console.log(result)
+//                 }
+//             })
+//           })
+//         })
+    // {% for category in restaurant_list %}
+    // {% for restaurant in category %} 
     // {{ restaurant['id'] }}
-    {% endfor %}
-    {% endfor %}</script>
+    // {% endfor %}
+    // {% endfor %}</script>
 
 
 {% endblock %}

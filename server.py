@@ -34,8 +34,9 @@ def get_choices():
     bar_categories = request.args.getlist("bar")
     activity_categories = request.args.getlist("activity")
 
+
                 ############################################
-                #        yelp query for restaurants        #
+                ##       yelp query for restaurants       ##
                 ############################################
     # iterates over list of categories selected from checkboxes, calls
     # the search_yelp function for each category, and appends the returned
@@ -51,9 +52,11 @@ def get_choices():
 
         restaurant_list.append(rest_results)
 
+
                 ############################################
-                #            yelp query for bars           #
+                ##           yelp query for bars          ##
                 ############################################
+
     bar_list = []
     for bar in bar_categories:
         bar_results = search_yelp(bar, location, radius)
@@ -65,8 +68,9 @@ def get_choices():
 
         bar_list.append(bar_results)
 
+
                 ############################################
-                #         yelp query for activities        #
+                ##        yelp query for activities       ##
                 ############################################
 
     activity_list = []
@@ -86,12 +90,20 @@ def get_choices():
                            activity_list=activity_list)
 
 
+                ############################################
+                ##           show register form           ##
+                ############################################
+
 @app.route('/register', methods=['GET'])
 def register_form():
     """Show form for user signup."""
 
     return render_template("register.html")
 
+
+                ############################################
+                ##         process register form          ##
+                ############################################
 
 @app.route('/register', methods=['POST'])
 def register_process():
@@ -100,6 +112,8 @@ def register_process():
     # Get form variables
     email = request.form["email"]
     password = request.form["password"]
+    first_name = request.form["fname"]
+    last_name = request.form["lname"]
 
     check = User.query.filter_by(email=email).first()
     if check:
@@ -107,18 +121,25 @@ def register_process():
         return redirect("/login")
 
     else:
-        new_user = User(email=email, password=password)
+        new_user = User(email=email,
+                        password=password,
+                        first_name=first_name,
+                        last_name=last_name)
 
         db.session.add(new_user)
         db.session.commit()
 
         user = User.query.filter_by(email=email).first()
-        email = user.email
+        name = user.first_name
         trips = user.trips
 
         flash("User %s added." % email)
-        return render_template("user_profile.html", user=email, trips=trips)
+        return render_template("user_profile.html", user=name, trips=trips)
 
+
+                ############################################
+                ##             show login form            ##
+                ############################################
 
 @app.route('/login', methods=['GET'])
 def login_form():
@@ -126,6 +147,10 @@ def login_form():
 
     return render_template("login.html")
 
+
+                ############################################
+                ##           process login form           ##
+                ############################################
 
 @app.route('/login', methods=['POST'])
 def login_process():
@@ -146,23 +171,59 @@ def login_process():
         return redirect("/login")
 
     session["user_id"] = user.user_id
-    email = user.email
+    name = user.first_name
     trips = user.trips
 
     flash("Logged in")
-    return render_template("user_profile.html", user=email, trips=trips)
+    return render_template("user_profile.html", user=name, trips=trips)
 
 
-# @app.route('/login', methods=['GET'])
-# def login_form():
-#     """Show login form."""
+                ############################################
+                ##            show profile page           ##
+                ############################################
 
-#     restaurants = User.query.filter_by(Trip.restaurant).all()
+@app.route('/profile', methods=['GET'])
+def show_profile():
+    """Show profile page."""
 
-#     return render_template("trip.html",
-#                            restaurants=restaurants,
-#                            bars=bars,
-#                            activities=activities)
+    user_id = session["user_id"]
+    user = User.query.filter_by(user_id=user_id).first()
+    name = user.first_name
+    trips = user.trips
+
+    return render_template("user_profile.html", user=name, trips=trips)
+
+
+                ############################################
+                ##                 logout                 ##
+                ############################################
+
+@app.route('/logout')
+def logout():
+    """Log out user from session"""
+
+    del session["user_id"]
+    flash("You are now logged out")
+    return redirect("/")
+
+
+                ############################################
+                ##           show selected trip           ##
+                ############################################
+
+@app.route('/trip', methods=['GET'])
+def show_trip():
+    """Show selected trip for user."""
+
+    user_id = session["user_id"]
+    user = User.query.filter_by(user_id=user_id).first()
+    restaurants = db.session.query(Restaurant).filter_by.all()
+    session["user_id"] = user.user_id
+    trips = user.trips
+
+    return render_template("trip.html",
+                           trips=trips,
+                           restaurants=restaurants)
 
 
 if __name__ == "__main__":

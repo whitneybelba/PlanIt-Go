@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<title>{{ user }}'s Profile</title>
     <h3>Hello {{ user }}</h3>
     {% if trips %}
     <h4>Here are your saved trips:</h4>
     {% for trip in trips %}
-    <p><a href="{{ trip }}"> {{trip}} </a> </p>
+    <p><a href="/{{ trip }}"> {{trip}} </a> </p>
     {% endfor %}
     {% endif %}
    

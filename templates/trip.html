@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <h4>Trip Details:</h4>
-<h4>{{trip.restaurants}}</h4>
+{% for restaurant in trip.restaurants %}
+<h4>{{ restaurant }}</h4>
 
 <div id="tripmap"></div>
-
+{% endfor %}
 {% endblock %}

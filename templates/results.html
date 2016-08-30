@@ -72,7 +72,7 @@ many as you would like.</h4>
         <td>{{ bar['review_count']}}</td>
         <td>{{ bar['location']['city'] }}</td>
         <td>{{ bar['category'] }}</td>
-        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate']['longitude'] data-lat={{ bar['location']['coordinate']['latitude'] }} data-name={{ bar['name'] }} data-location={{ bar['location']['city'] }} class="btn">Add</button></td>
+        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate'] }}['longitude'] data-lat={{ bar['location']['coordinate']['latitude'] }} data-name={{ bar['name'] }} data-location={{ bar['location']['city'] }} class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -122,19 +122,23 @@ many as you would like.</h4>
 
 <script type="text/javascript">
 
+function addedBar(result) {
+  console.log(result);
+}
+
 function sendBarInfo(evt) {
-  payload = {
+  var payload = {
     "location": this.dataset.location,
     "name": this.dataset.name,
     "lat": this.dataset.lat,
     "long": this.dataset.long,
-    "id": this.id
+    "id": this.id,
     "trip_id": this.dataset.trip_id
   };
-
+$.post('/add-bar', payload, addedBar);
 }
 
-$('.btn').on('click', sendRestaurantInfo);
+$('.btn').on('click', sendBarInfo);
 
 
 

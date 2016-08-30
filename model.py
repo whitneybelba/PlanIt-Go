@@ -68,8 +68,7 @@ class Restaurant(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "<Restaurant rest_id=%s name=%s>" % (self.rest_id,
-                                                    self.rest_name)
+        return "%s" % (self.rest_name)
 
 
 class Bar(db.Model):
@@ -87,8 +86,7 @@ class Bar(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "<Bar bar_id=%s name=%s>" % (self.bar_id,
-                                            self.bar_name)
+        return "%s" % (self.bar_name)
 
 
 class Activity(db.Model):
@@ -107,8 +105,7 @@ class Activity(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "<Activity act_id=%s name=%s>" % (self.act_id,
-                                                 self.act_name)
+        return "%s" % (self.act_name)
 
                 #################################
                 #        Helper functions       #

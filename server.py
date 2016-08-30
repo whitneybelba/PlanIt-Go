@@ -21,13 +21,13 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def index():
     """Show search homepage."""
-    trip_id = 0
-    return render_template("index.html",trip_id=trip_id)
+    return render_template("index.html")
 
 
-@app.route("/results/<int:trip_id>", methods=["GET"])
-def get_choices(trip_id):
+@app.route("/results", methods=["GET"])
+def get_choices():
     """Get user's restaurant, bar and activity genre choices."""
+
 
     location = request.args.get("location") + request.args.get("state")
     radius = request.args.get("radius")
@@ -35,6 +35,13 @@ def get_choices(trip_id):
     bar_categories = request.args.getlist("bar")
     activity_categories = request.args.getlist("activity")
 
+
+    user_id = session["user_id"]
+
+    trip = Trip(user_id=user_id, city=location)
+
+    db.session.add(trip)
+    db.session.commit()
 
                 ############################################
                 ##       yelp query for restaurants       ##
@@ -89,7 +96,7 @@ def get_choices(trip_id):
                            restaurant_list=restaurant_list,
                            bar_list=bar_list,
                            activity_list=activity_list,
-                           trip_id=trip_id)
+                           trip_id=trip.trip_id)
 
                 ############################################
                 ##           show register form           ##
@@ -214,24 +221,6 @@ def logout():
 
 
                 ############################################
-                ##             make new trip              ##
-                ############################################
-
-@app.route('/profile/<int:trip_id>', methods=['POST'])
-def make_trip():
-    """Instantiate new trip in database."""
-
-    user_id = session["user_id"]
-
-    trip = Trip(user_id=user_id)
-
-    db.session.add(trip)
-    db.session.commit()
-
-
-
-
-                ############################################
                 ##           show selected trip           ##
                 ############################################
 
@@ -258,12 +247,12 @@ def show_trip(trip_id):
 def add_bar():
     """Add a business to trip/itinerary."""
 
-    name = request.post.get("name")
-    city = request.post.get("location")
-    lat = request.post.get("lat")
-    long = request.post.get("long")
-    bar_id = request.post.get("id")
-    trip_id = request.post.get("trip_id")
+    name = request.form.get("name")
+    city = request.form.get("location")
+    lat = request.form.get("lat")
+    long = request.form.get("long")
+    bar_id = request.form.get("id")
+    trip_id = request.form.get("trip_id")
 
     bar = Bar(trip_id=trip_id, bar_name=name, bar_lat=lat, bar_long=long, bar_city=city, bar_id=bar_id)
     db.session.add(bar)

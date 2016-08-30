@@ -11,7 +11,7 @@ def search_yelp(categories, location, radius):
     params["category_filter"] = categories
     params["location"] = location
     params["radius_filter"] = radius
-    params["limit"] = "12"
+    params["limit"] = "10"
     params["sort"] = "2"
 
     ###########################################################################

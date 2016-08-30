@@ -3,6 +3,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from api_call import search_yelp
 from jinja2 import StrictUndefined
 from model import connect_to_db, db, User, Restaurant, Bar, Activity, Trip
+# from helper_functions import get_results_from_yelp
 
 
 app = Flask(__name__)
@@ -20,12 +21,12 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def index():
     """Show search homepage."""
+    trip_id = 0
+    return render_template("index.html",trip_id=trip_id)
 
-    return render_template("index.html")
 
-
-@app.route("/results", methods=["GET"])
-def get_choices():
+@app.route("/results/<int:trip_id>", methods=["GET"])
+def get_choices(trip_id):
     """Get user's restaurant, bar and activity genre choices."""
 
     location = request.args.get("location") + request.args.get("state")
@@ -58,8 +59,8 @@ def get_choices():
                 ############################################
 
     bar_list = []
-    for bar in bar_categories:
-        bar_results = search_yelp(bar, location, radius)
+    for category in bar_categories:
+        bar_results = search_yelp(category, location, radius)
         for bar in bar_results:
             categories = []
             for category in bar['categories']:
@@ -74,8 +75,8 @@ def get_choices():
                 ############################################
 
     activity_list = []
-    for activity in activity_categories:
-        activity_results = search_yelp(activity, location, radius)
+    for category in activity_categories:
+        activity_results = search_yelp(category, location, radius)
         for activity in activity_results:
             categories = []
             for category in activity['categories']:
@@ -87,8 +88,8 @@ def get_choices():
     return render_template("results.html",
                            restaurant_list=restaurant_list,
                            bar_list=bar_list,
-                           activity_list=activity_list)
-
+                           activity_list=activity_list,
+                           trip_id=trip_id)
 
                 ############################################
                 ##           show register form           ##
@@ -186,12 +187,17 @@ def login_process():
 def show_profile():
     """Show profile page."""
 
-    user_id = session["user_id"]
-    user = User.query.filter_by(user_id=user_id).first()
-    name = user.first_name
-    trips = user.trips
+    if session.get('user_id'):
+        user_id = session["user_id"]
+        user = User.query.get(user_id)
+        name = user.first_name
+        trips = user.trips
 
-    return render_template("user_profile.html", user=name, trips=trips)
+        return render_template("user_profile.html", user=name, trips=trips)
+
+    else:
+        flash("Please log in to view profile")
+        return redirect("/login")
 
 
                 ############################################
@@ -208,22 +214,63 @@ def logout():
 
 
                 ############################################
+                ##             make new trip              ##
+                ############################################
+
+@app.route('/profile/<int:trip_id>', methods=['POST'])
+def make_trip():
+    """Instantiate new trip in database."""
+
+    user_id = session["user_id"]
+
+    trip = Trip(user_id=user_id)
+
+    db.session.add(trip)
+    db.session.commit()
+
+
+
+
+                ############################################
                 ##           show selected trip           ##
                 ############################################
 
-@app.route('/trip', methods=['GET'])
-def show_trip():
+@app.route('/trip/<int:trip_id>', methods=['GET'])
+def show_trip(trip_id):
     """Show selected trip for user."""
 
-    user_id = session["user_id"]
-    user = User.query.filter_by(user_id=user_id).first()
-    restaurants = db.session.query(Restaurant).filter_by.all()
-    session["user_id"] = user.user_id
-    trips = user.trips
+    # user_id = session["user_id"]
+    # user = User.query.filter_by(user_id=user_id).first()
+    # restaurants = Restaurant.query.filter_by(trip_id=trip_id).all()
+    # session["user_id"] = user.user_id
+    # trips = user.trips
+    trip = Trip.query.get(trip_id)
 
     return render_template("trip.html",
-                           trips=trips,
-                           restaurants=restaurants)
+                           trip=trip)
+
+
+                ############################################
+                ##            add bar to trip             ##
+                ############################################
+
+@app.route('/add-bar', methods=['POST'])
+def add_bar():
+    """Add a business to trip/itinerary."""
+
+    name = request.post.get("name")
+    city = request.post.get("location")
+    lat = request.post.get("lat")
+    long = request.post.get("long")
+    bar_id = request.post.get("id")
+    trip_id = request.post.get("trip_id")
+
+    bar = Bar(trip_id=trip_id, bar_name=name, bar_lat=lat, bar_long=long, bar_city=city, bar_id=bar_id)
+    db.session.add(bar)
+    db.session.commit()
+
+    return "Success!"
+
 
 
 if __name__ == "__main__":

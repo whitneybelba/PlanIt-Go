@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <title>Travel Activity Planner</title>
-<script type="text/javascript" src="../static/js/scripts.js" async></script>
+<script type="text/javascript" src="../static/js/index_scripts.js"></script>
 
 <h3>Please choose the types of restaurants you like:</h3>
-<form action="results" method="GET">
-<div class="container2">
+<form action="/results/{{ trip_id }}" method="GET" id="searchform">
+<div class="container2" id="restcheckbox">
     <label class="checkbox">
         <input type="checkbox" name="restaurant" value="restaurants"> All Restaurants (best rated)
     </label><br>
@@ -304,10 +304,9 @@
         <input type="text" id="city" name="location"> 
     </label>
 </div>
-<div>
+<div id="state">
   <select name="state" size="1">
       <option value="" selected disabled>Please select a state...</option>
-      <option value="AL">Alabama</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>

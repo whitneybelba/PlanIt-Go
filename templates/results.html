@@ -9,9 +9,12 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<h4>Please review the tables below. You can link to the Yelp reviews for each business. If 
+you decide you would like to add it to your itinerary, press the add button. You can add as
+many as you would like.</h4>
+{% if restaurant_list %}
 {% if restaurant_list[0] %}            
-<h4>Here are some restaurant<br>options you might like:</h4>
-<div class="container">
+<div class="container-fluid">
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -35,10 +38,7 @@
         <td>{{ restaurant['review_count']}}</td>
         <td>{{ restaurant['location']['city'] }}</td>
         <td>{{ restaurant['category'] }}</td>
-        <td><button type="button" id="{{ restaurant['id']}}" class="btn">Add</button></td>
-        {# <!-- <td><a href="/showmap?lat={{restaurant['lat']}}">Show Map</a></td> --> #}
-        {# <!-- <td data-lat="{{ restaurant['lat'] }}" class="triggerMap">Show Map</td> -->#}
-        {# <!-- <td data-id="{{ restaurant['id'] }}" class="triggerMap">Show Map</td> --> #}
+        <td><button type="button" id="{{ restaurant['id'] }}" class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -46,10 +46,11 @@
   </table>
 </div>
 {% endif %}
+{% endif %}
 
+{% if bar_list %}
 {% if bar_list[0] %}
-<h4>Here are some bar options <br>you might like:</h4>
-<div class="container">
+<div class="container-fluid">
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -71,7 +72,7 @@
         <td>{{ bar['review_count']}}</td>
         <td>{{ bar['location']['city'] }}</td>
         <td>{{ bar['category'] }}</td>
-        <td><button type="button" class="btn">Add</button></td>
+        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate']['longitude'] data-lat={{ bar['location']['coordinate']['latitude'] }} data-name={{ bar['name'] }} data-location={{ bar['location']['city'] }} class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -79,10 +80,11 @@
   </table>
 </div>
 {% endif %}
+{% endif %}
 
+{% if activity_list %}
 {% if activity_list[0] %}
-<h4>Here are some activity <br>options you might like:</h4>
-<div class="container">
+<div class="container-fluid">
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -104,7 +106,7 @@
         <td>{{ activity['review_count']}}</td>
         <td>{{ activity['location']['city'] }}</td>
         <td>{{ activity['category'] }}</td>
-        <td><button type="button" class="btn">Add</button></td>
+        <td><button type="button" id="{{ activity['id'] }}"class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -112,30 +114,31 @@
   </table>
 </div>
 {% endif %}
-<div>
+{% endif %}
+<div class="yelpbutton">
 <a href="http://www.yelp.com">
 <img border="10" alt="Yelp" src="../static/img/yelp_powered_btn_dark.png">
 </a></div>
-// <script type="text/javascript"> 
-//     $(document).ready(function () {
 
-//         $("#thrive-boulder").click(function () {
-//             $.ajax({
-//                 url: '/trip/add',
-//                 data:
-//                 dataType: 'json',
-//                 type: 'POST',
-//                 success: function (result) {
-//                   console.log(result)
-//                 }
-//             })
-//           })
-//         })
-    // {% for category in restaurant_list %}
-    // {% for restaurant in category %} 
-    // {{ restaurant['id'] }}
-    // {% endfor %}
-    // {% endfor %}</script>
+<script type="text/javascript">
+
+function sendBarInfo(evt) {
+  payload = {
+    "location": this.dataset.location,
+    "name": this.dataset.name,
+    "lat": this.dataset.lat,
+    "long": this.dataset.long,
+    "id": this.id
+    "trip_id": this.dataset.trip_id
+  };
+
+}
+
+$('.btn').on('click', sendRestaurantInfo);
 
 
+
+
+</script>
+  
 {% endblock %}

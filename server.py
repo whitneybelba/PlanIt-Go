@@ -3,7 +3,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 from api_call import search_yelp
 from jinja2 import StrictUndefined
 from model import connect_to_db, db, User, Restaurant, Bar, Activity, Trip
-# from helper_functions import get_results_from_yelp
+
 
 
 app = Flask(__name__)
@@ -28,13 +28,11 @@ def index():
 def get_choices():
     """Get user's restaurant, bar and activity genre choices."""
 
-
     location = request.args.get("location") + request.args.get("state")
     radius = request.args.get("radius")
     restaurant_categories = request.args.getlist("restaurant")
     bar_categories = request.args.getlist("bar")
     activity_categories = request.args.getlist("activity")
-
 
     user_id = session["user_id"]
 
@@ -240,12 +238,39 @@ def show_trip(trip_id):
 
 
                 ############################################
+                ##         add restaurant to trip         ##
+                ############################################
+
+@app.route('/add-restaurant', methods=['POST'])
+def add_restaurant():
+    """Add a restaurant to trip/itinerary."""
+
+    name = request.form.get("name")
+    city = request.form.get("location")
+    lat = request.form.get("lat")
+    long = request.form.get("long")
+    rest_id = request.form.get("id")
+    trip_id = request.form.get("trip_id")
+
+    restaurant = Restaurant(trip_id=trip_id,
+                            rest_name=name,
+                            rest_lat=lat,
+                            rest_long=long,
+                            rest_city=city,
+                            rest_id=rest_id)
+
+    db.session.add(restaurant)
+    db.session.commit()
+
+    return "Success!"
+
+                ############################################
                 ##            add bar to trip             ##
                 ############################################
 
 @app.route('/add-bar', methods=['POST'])
 def add_bar():
-    """Add a business to trip/itinerary."""
+    """Add a bar to trip/itinerary."""
 
     name = request.form.get("name")
     city = request.form.get("location")
@@ -254,12 +279,45 @@ def add_bar():
     bar_id = request.form.get("id")
     trip_id = request.form.get("trip_id")
 
-    bar = Bar(trip_id=trip_id, bar_name=name, bar_lat=lat, bar_long=long, bar_city=city, bar_id=bar_id)
+    bar = Bar(trip_id=trip_id,
+              bar_name=name,
+              bar_lat=lat,
+              bar_long=long,
+              bar_city=city,
+              bar_id=bar_id)
+
     db.session.add(bar)
     db.session.commit()
 
     return "Success!"
 
+
+                ############################################
+                ##            add activity to trip             ##
+                ############################################
+
+@app.route('/add-activity', methods=['POST'])
+def add_activity():
+    """Add an activity to trip/itinerary."""
+
+    name = request.form.get("name")
+    city = request.form.get("location")
+    lat = request.form.get("lat")
+    long = request.form.get("long")
+    act_id = request.form.get("id")
+    trip_id = request.form.get("trip_id")
+
+    activity = Activity(trip_id=trip_id,
+                        act_name=name,
+                        act_lat=lat,
+                        act_long=long,
+                        act_city=city,
+                        act_id=act_id)
+
+    db.session.add(activity)
+    db.session.commit()
+
+    return "Success!"
 
 
 if __name__ == "__main__":

@@ -38,7 +38,7 @@ many as you would like.</h4>
         <td>{{ restaurant['review_count']}}</td>
         <td>{{ restaurant['location']['city'] }}</td>
         <td>{{ restaurant['category'] }}</td>
-        <td><button type="button" id="{{ restaurant['id'] }}" class="btn">Add</button></td>
+        <td><button type="button" id="{{ restaurant['id'] }}" data-trip_id={{ trip_id }} data-long={{ restaurant['location']['coordinate']['longitude'] }} data-lat={{ restaurant['location']['coordinate']['latitude'] }} data-name={{ restaurant['name'] }} data-location={{ restaurant['location']['city'] }} class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -72,7 +72,7 @@ many as you would like.</h4>
         <td>{{ bar['review_count']}}</td>
         <td>{{ bar['location']['city'] }}</td>
         <td>{{ bar['category'] }}</td>
-        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate'] }}['longitude'] data-lat={{ bar['location']['coordinate']['latitude'] }} data-name={{ bar['name'] }} data-location={{ bar['location']['city'] }} class="btn">Add</button></td>
+        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate']['longitude'] }} data-lat={{ bar['location']['coordinate']['latitude'] }} data-name={{ bar['name'] }} data-location={{ bar['location']['city'] }} class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -106,7 +106,7 @@ many as you would like.</h4>
         <td>{{ activity['review_count']}}</td>
         <td>{{ activity['location']['city'] }}</td>
         <td>{{ activity['category'] }}</td>
-        <td><button type="button" id="{{ activity['id'] }}"class="btn">Add</button></td>
+        <td><button type="button" id="{{ activity['id'] }}" data-trip_id={{ trip_id }} data-long={{ activity['location']['coordinate']['longitude'] }} data-lat={{ activity['location']['coordinate']['latitude'] }} data-name={{ activity['name'] }} data-location={{ activity['location']['city'] }} class="btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -121,6 +121,24 @@ many as you would like.</h4>
 </a></div>
 
 <script type="text/javascript">
+
+function addedRestaurant(result) {
+  console.log(result);
+}
+
+function sendRestaurantInfo(evt) {
+  var payload = {
+    "location": this.dataset.location,
+    "name": this.dataset.name,
+    "lat": this.dataset.lat,
+    "long": this.dataset.long,
+    "id": this.id,
+    "trip_id": this.dataset.trip_id
+  };
+$.post('/add-restaurant', payload, addedRestaurant);
+}
+
+$('.btn').on('click', sendRestaurantInfo);
 
 function addedBar(result) {
   console.log(result);
@@ -141,7 +159,23 @@ $.post('/add-bar', payload, addedBar);
 $('.btn').on('click', sendBarInfo);
 
 
+function addedActivity(result) {
+  console.log(result);
+}
 
+function sendActivityInfo(evt) {
+  var payload = {
+    "location": this.dataset.location,
+    "name": this.dataset.name,
+    "lat": this.dataset.lat,
+    "long": this.dataset.long,
+    "id": this.id,
+    "trip_id": this.dataset.trip_id
+  };
+$.post('/add-activity', payload, addedActivity);
+}
+
+$('.btn').on('click', sendActivityInfo);
 
 </script>
   

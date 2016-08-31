@@ -3,7 +3,13 @@
 <h4>Trip Details:</h4>
 {% for restaurant in trip.restaurants %}
 <h4>{{ restaurant }}</h4>
+{% for bar in trip.bars %}
+<h4>{{ bar }}</h4>
+{% for activity in trip.activities %}
+<h4>{{ activity }}</h4>
 
 <div id="tripmap"></div>
+{% endfor %}
+{% endfor %}
 {% endfor %}
 {% endblock %}

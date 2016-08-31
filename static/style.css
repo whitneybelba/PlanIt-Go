@@ -6,6 +6,10 @@
  overflow-y: 
  scroll; }
 
+.checkbox2 {
+    height: 15px;
+}
+
  .btn {
   background-color: #2eb8b8;
   color: white;

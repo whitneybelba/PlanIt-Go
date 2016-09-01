@@ -18,9 +18,9 @@ app.secret_key = "ABC"
 app.jinja_env.undefined = StrictUndefined
 
 
-@app.route('/')
+@app.route('/search')
 def index():
-    """Show search homepage."""
+    """Show search page."""
     return render_template("index.html")
 
 
@@ -126,7 +126,7 @@ def register_process():
     check = User.query.filter_by(email=email).first()
     if check:
         flash("Already a user, please login")
-        return redirect("/login")
+        return redirect("/")
 
     else:
         new_user = User(email=email,
@@ -149,9 +149,12 @@ def register_process():
                 ##             show login form            ##
                 ############################################
 
-@app.route('/login', methods=['GET'])
+@app.route('/', methods=['GET'])
 def login_form():
     """Show login form."""
+
+    if session.get('user_id'):
+        return redirect("/profile")
 
     return render_template("login.html")
 
@@ -172,11 +175,11 @@ def login_process():
 
     if not user:
         flash("No such user")
-        return redirect("/login")
+        return redirect("/")
 
     if user.password != password:
         flash("Incorrect password")
-        return redirect("/login")
+        return redirect("/")
 
     session["user_id"] = user.user_id
     name = user.first_name
@@ -204,7 +207,7 @@ def show_profile():
 
     else:
         flash("Please log in to view profile")
-        return redirect("/login")
+        return redirect("/")
 
 
                 ############################################

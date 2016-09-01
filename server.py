@@ -33,10 +33,11 @@ def get_choices():
     restaurant_categories = request.args.getlist("restaurant")
     bar_categories = request.args.getlist("bar")
     activity_categories = request.args.getlist("activity")
+    trip_name = request.args.get("name")
 
     user_id = session["user_id"]
 
-    trip = Trip(user_id=user_id, city=location)
+    trip = Trip(user_id=user_id, name=trip_name, city=location[0:-3].title())
 
     db.session.add(trip)
     db.session.commit()
@@ -95,6 +96,7 @@ def get_choices():
                            bar_list=bar_list,
                            activity_list=activity_list,
                            trip_id=trip.trip_id)
+
 
                 ############################################
                 ##           show register form           ##
@@ -246,6 +248,7 @@ def add_restaurant():
     """Add a restaurant to trip/itinerary."""
 
     name = request.form.get("name")
+    url = request.form.get("url")
     city = request.form.get("location")
     lat = request.form.get("lat")
     long = request.form.get("long")
@@ -253,6 +256,7 @@ def add_restaurant():
     trip_id = request.form.get("trip_id")
 
     restaurant = Restaurant(trip_id=trip_id,
+                            rest_url=url,
                             rest_name=name,
                             rest_lat=lat,
                             rest_long=long,
@@ -268,11 +272,13 @@ def add_restaurant():
                 ##            add bar to trip             ##
                 ############################################
 
+
 @app.route('/add-bar', methods=['POST'])
 def add_bar():
     """Add a bar to trip/itinerary."""
 
     name = request.form.get("name")
+    url = request.form.get("url")
     city = request.form.get("location")
     lat = request.form.get("lat")
     long = request.form.get("long")
@@ -280,6 +286,7 @@ def add_bar():
     trip_id = request.form.get("trip_id")
 
     bar = Bar(trip_id=trip_id,
+              bar_url=url,
               bar_name=name,
               bar_lat=lat,
               bar_long=long,
@@ -293,7 +300,7 @@ def add_bar():
 
 
                 ############################################
-                ##            add activity to trip             ##
+                ##          add activity to trip          ##
                 ############################################
 
 @app.route('/add-activity', methods=['POST'])
@@ -301,6 +308,7 @@ def add_activity():
     """Add an activity to trip/itinerary."""
 
     name = request.form.get("name")
+    url = request.form.get("url")
     city = request.form.get("location")
     lat = request.form.get("lat")
     long = request.form.get("long")
@@ -308,6 +316,7 @@ def add_activity():
     trip_id = request.form.get("trip_id")
 
     activity = Activity(trip_id=trip_id,
+                        act_url=url,
                         act_name=name,
                         act_lat=lat,
                         act_long=long,

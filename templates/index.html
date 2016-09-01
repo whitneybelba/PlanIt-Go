@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <title>Travel Activity Planner</title>
-<script type="text/javascript" src="../static/js/index_scripts.js"></script>
 
 <h4>Please choose the types of restaurants you like:</h4>
 <form action="/results" method="GET" id="searchform">
@@ -298,12 +297,14 @@
         <input type="checkbox" name="activity" value="toys"> Toy Stores
     </label><br>
 </div><br><br>
+
 <div>
     <label>
         <h4>Please enter a US city to search:</h4> 
         <input type="text" id="city" name="location"> 
     </label>
 </div>
+
 <div id="state">
   <select name="state" size="1">
       <option value="" selected disabled>Please select a state...</option>
@@ -368,10 +369,17 @@
         <option value="32000">20 miles</option>
         <option value="40000">25 miles</option>
     </select>
+<div>
+    <label>
+        <h4>What would you like to name this trip?</h4> 
+        <input type="text" id="trip-name" name="name"> 
+    </label>
+</div>
 </div>
     <div>
         <input class="btn" type="submit">
     </div>
 </form>
+
 
 {% endblock %}

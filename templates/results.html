@@ -38,7 +38,7 @@ many as you would like.</h4>
         <td>{{ restaurant['review_count']}}</td>
         <td>{{ restaurant['location']['city'] }}</td>
         <td>{{ restaurant['category'] }}</td>
-        <td><button type="button" id="{{ restaurant['id'] }}" data-trip_id={{ trip_id }} data-long={{ restaurant['location']['coordinate']['longitude'] }} data-lat={{ restaurant['location']['coordinate']['latitude'] }} data-name={{ restaurant['name'] }} data-location={{ restaurant['location']['city'] }} class="btn">Add</button></td>
+        <td><button type="button" id="{{ restaurant['id'] }}" data-trip_id={{ trip_id }} data-long={{ restaurant['location']['coordinate']['longitude'] }} data-lat={{ restaurant['location']['coordinate']['latitude'] }} data-name="{{ restaurant['name'] }}" data-url={{ restaurant['url'] }} data-location={{ restaurant['location']['city'] }} class="rest-btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -72,7 +72,7 @@ many as you would like.</h4>
         <td>{{ bar['review_count']}}</td>
         <td>{{ bar['location']['city'] }}</td>
         <td>{{ bar['category'] }}</td>
-        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate']['longitude'] }} data-lat={{ bar['location']['coordinate']['latitude'] }} data-name={{ bar['name'] }} data-location={{ bar['location']['city'] }} class="btn">Add</button></td>
+        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate']['longitude'] }} data-lat={{ bar['location']['coordinate']['latitude'] }} data-url={{ bar['url'] }} data-name="{{ bar['name'] }}" data-location={{ bar['location']['city'] }} class="bar-btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -106,7 +106,7 @@ many as you would like.</h4>
         <td>{{ activity['review_count']}}</td>
         <td>{{ activity['location']['city'] }}</td>
         <td>{{ activity['category'] }}</td>
-        <td><button type="button" id="{{ activity['id'] }}" data-trip_id={{ trip_id }} data-long={{ activity['location']['coordinate']['longitude'] }} data-lat={{ activity['location']['coordinate']['latitude'] }} data-name={{ activity['name'] }} data-location={{ activity['location']['city'] }} class="btn">Add</button></td>
+        <td><button type="button" id="{{ activity['id'] }}" data-trip_id={{ trip_id }} data-long={{ activity['location']['coordinate']['longitude'] }} data-lat={{ activity['location']['coordinate']['latitude'] }} data-name="{{ activity['name'] }}" data-url={{ activity['url'] }} data-location={{ activity['location']['city'] }} class="act-btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -115,6 +115,9 @@ many as you would like.</h4>
 </div>
 {% endif %}
 {% endif %}
+
+<a class="btn" href='/trip/'>View Saved Trip</a><br>
+
 <div class="yelpbutton">
 <a href="http://www.yelp.com">
 <img border="10" alt="Yelp" src="../static/img/yelp_powered_btn_dark.png">
@@ -124,11 +127,18 @@ many as you would like.</h4>
 
 function addedRestaurant(result) {
   console.log(result);
+  $('.rest-btn').toggle(function (){
+       $(this).attr('value', 'Add');
+    }, function(){
+    $(this).attr('value', 'Remove');
+});
 }
+
 
 function sendRestaurantInfo(evt) {
   var payload = {
     "location": this.dataset.location,
+    "url": this.dataset.url,
     "name": this.dataset.name,
     "lat": this.dataset.lat,
     "long": this.dataset.long,
@@ -138,7 +148,7 @@ function sendRestaurantInfo(evt) {
 $.post('/add-restaurant', payload, addedRestaurant);
 }
 
-$('.btn').on('click', sendRestaurantInfo);
+$('.rest-btn').on('click', sendRestaurantInfo);
 
 function addedBar(result) {
   console.log(result);
@@ -147,6 +157,7 @@ function addedBar(result) {
 function sendBarInfo(evt) {
   var payload = {
     "location": this.dataset.location,
+    "url": this.dataset.url,
     "name": this.dataset.name,
     "lat": this.dataset.lat,
     "long": this.dataset.long,
@@ -156,7 +167,7 @@ function sendBarInfo(evt) {
 $.post('/add-bar', payload, addedBar);
 }
 
-$('.btn').on('click', sendBarInfo);
+$('.bar-btn').on('click', sendBarInfo);
 
 
 function addedActivity(result) {
@@ -166,6 +177,7 @@ function addedActivity(result) {
 function sendActivityInfo(evt) {
   var payload = {
     "location": this.dataset.location,
+    "url": this.dataset.url,
     "name": this.dataset.name,
     "lat": this.dataset.lat,
     "long": this.dataset.long,
@@ -175,7 +187,7 @@ function sendActivityInfo(evt) {
 $.post('/add-activity', payload, addedActivity);
 }
 
-$('.btn').on('click', sendActivityInfo);
+$('.act-btn').on('click', sendActivityInfo);
 
 </script>
   

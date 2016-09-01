@@ -37,8 +37,7 @@ def load_trips():
         row = row.rstrip()
         trip_id, name, city, length, user_id = row.split("|")
 
-        trip = Trip(trip_id=trip_id,
-                    name=name,
+        trip = Trip(name=name,
                     city=city,
                     length=length,
                     user_id=user_id)
@@ -57,9 +56,10 @@ def load_restaurants():
 
     for row in open("seed_data/u.restaurant"):
         row = row.rstrip()
-        rest_id, rest_name, rest_lat, rest_long, rest_city, trip_id = row.split("|")
+        rest_id, rest_url, rest_name, rest_lat, rest_long, rest_city, trip_id = row.split("|")
 
         restaurant = Restaurant(rest_id=rest_id,
+                                rest_url=rest_url,
                                 rest_name=rest_name,
                                 rest_lat=rest_lat,
                                 rest_long=rest_long,
@@ -80,9 +80,10 @@ def load_bars():
 
     for row in open("seed_data/u.bar"):
         row = row.rstrip()
-        bar_id, bar_name, bar_lat, bar_long, bar_city, trip_id = row.split("|")
+        bar_id, bar_url, bar_name, bar_lat, bar_long, bar_city, trip_id = row.split("|")
 
         bar = Bar(bar_id=bar_id,
+                  bar_url=bar_url,
                   bar_name=bar_name,
                   bar_lat=bar_lat,
                   bar_long=bar_long,
@@ -103,9 +104,10 @@ def load_activities():
 
     for row in open("seed_data/u.activity"):
         row = row.rstrip()
-        act_id, act_name, act_lat, act_long, act_city, trip_id = row.split("|")
+        act_id, act_url, act_name, act_lat, act_long, act_city, trip_id = row.split("|")
 
         activity = Activity(act_id=act_id,
+                            act_url=act_url,
                             act_name=act_name,
                             act_lat=act_lat,
                             act_long=act_long,

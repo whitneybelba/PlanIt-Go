@@ -59,6 +59,7 @@ class Restaurant(db.Model):
     __tablename__ = "restaurants"
 
     rest_id = db.Column(db.String(100), primary_key=True)
+    rest_url = db.Column(db.String(300), nullable=False)
     rest_name = db.Column(db.String(40), nullable=False)
     rest_lat = db.Column(db.String(50), nullable=False)
     rest_long = db.Column(db.String(40), nullable=False)
@@ -77,6 +78,7 @@ class Bar(db.Model):
     __tablename__ = "bars"
 
     bar_id = db.Column(db.String(100), primary_key=True)
+    bar_url = db.Column(db.String(300), nullable=False)
     bar_name = db.Column(db.String(40), nullable=False)
     bar_lat = db.Column(db.String(40), nullable=False)
     bar_long = db.Column(db.String(40), nullable=False)
@@ -95,12 +97,12 @@ class Activity(db.Model):
     __tablename__ = "activities"
 
     act_id = db.Column(db.String(100), primary_key=True)
+    act_url = db.Column(db.String(300), nullable=False)
     act_name = db.Column(db.String(40), nullable=False)
     act_lat = db.Column(db.String(40), nullable=False)
     act_long = db.Column(db.String(40), nullable=False)
     act_city = db.Column(db.String(40), nullable=False)
     trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'))
-
 
     def __repr__(self):
         """Provide helpful representation when printed."""

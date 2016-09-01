@@ -1,15 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
 <h4>Trip Details:</h4>
+
+{% if trip.restaurants %}
+
+<h3>Restaurants:</h3>
+
 {% for restaurant in trip.restaurants %}
+
 <h4>{{ restaurant }}</h4>
+
+{% endfor %}
+{% endif %}
+
+{% if trip.bars %}
+
+<h3>Bars:</h3>
+
 {% for bar in trip.bars %}
+
 <h4>{{ bar }}</h4>
+
+{% endfor %}
+{% endif %}
+
+{% if trip.activities %}
+
+<h3>Activities:</h3>
+
 {% for activity in trip.activities %}
+
 <h4>{{ activity }}</h4>
 
-<div id="tripmap"></div>
 {% endfor %}
-{% endfor %}
-{% endfor %}
+{% endif %}
+
+<a class="btn" href="/profile">Back to profile</a>
+
 {% endblock %}

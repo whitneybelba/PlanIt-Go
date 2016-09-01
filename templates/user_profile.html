@@ -5,27 +5,9 @@
     {% if trips %}
     <h4>Here are your saved trips:</h4>
     {% for trip in trips %}
-    <p><a href="/trip/{{ trip.trip_id }}"> {{ trip }} </a> </p>
+    <p><a href="/trip/{{ trip.trip_id }}">{{ trip }}</a></p>
     {% endfor %}
     {% endif %}
-    <!-- <form >
-        <input type='submit'>
-    </form> -->
-    <button type="button" class="btn">Plan New Trip</button>
+    <a class="btn" href="/">Plan New Trip</a>
 
-<script type="text/javascript">
-
-function makeNewTrip(evt) {
-  payload = {
-
-    "trip_id": this.dataset.trip_id
-  };
-
-}
-
-$('.btn').on('click', makeNewTrip);
-
-</script>
-
-   
 {% endblock %}

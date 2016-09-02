@@ -14,20 +14,15 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">PlanIt+Go</a>
+      {% if "user_id" in session %}<a class="navbar-brand" href="/search">PlanIt+Go</a>
+      {% else %}<a class="navbar-brand" href="/">PlanIt+Go</a>{% endif %}
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li class="login-out">{% if "user_id" in session %}<a href="/logout">Logout</a></li>
-            {% else %}<a href="/login">Login</a>
+            {% else %}<a href="/">Login</a>
             {% endif %}
         <li class="register">
           <a href="/register">Register</span></a></li>
@@ -40,6 +35,7 @@
     {% for flash in get_flashed_messages() %}
     {{ flash }}
     {% endfor %}
+
 {% block content %}
     
     Put body here.

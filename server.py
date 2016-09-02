@@ -416,6 +416,25 @@ def delete_activity():
     return jsonify({"act_id": act_id})
 
 
+                ############################################
+                ##              delete trip               ##
+                ############################################
+
+@app.route('/delete-trip', methods=['POST'])
+def delete_trip():
+    """Delete an entire trip."""
+
+    trip_id = request.form.get("trip_id")
+
+    act_trip = db.session.query(ActTrip).filter_by(act_id=act_id,
+                                                   trip_id=trip_id).one()
+    db.session.delete(trip)
+    db.session.commit()
+
+    return jsonify({"act_id": act_id})
+
+
+
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
     # point that we invoke the DebugToolbarExtension

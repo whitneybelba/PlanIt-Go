@@ -43,9 +43,9 @@ def get_choices():
     db.session.add(trip)
     db.session.commit()
 
-                ############################################
-                ##       yelp query for restaurants       ##
-                ############################################
+
+                 ##  yelp query for restaurants ##
+
     # iterates over list of categories selected from checkboxes, calls
     # the search_yelp function for each category, and appends the returned
     # list of restaurants in a category to a list for all restaurants
@@ -61,9 +61,9 @@ def get_choices():
         restaurant_list.append(rest_results)
 
 
-                ############################################
-                ##           yelp query for bars          ##
-                ############################################
+
+                     ##  yelp query for bars  ##
+
 
     bar_list = []
     for category in bar_categories:
@@ -77,9 +77,9 @@ def get_choices():
         bar_list.append(bar_results)
 
 
-                ############################################
-                ##        yelp query for activities       ##
-                ############################################
+
+                 ##  yelp query for activities ##
+
 
     activity_list = []
     for category in activity_categories:
@@ -274,6 +274,7 @@ def add_restaurant():
                                 rest_id=rest_id)
 
         db.session.add(restaurant)
+        db.session.commit()
         db.session.add(rest_trip)
         db.session.commit()
 
@@ -291,16 +292,11 @@ def delete_restaurant():
     rest_id = request.form.get("id")
     trip_id = request.form.get("trip_id")
 
-    rest_trip = RestTrip(rest_id=rest_id, trip_id=trip_id)
+    rest_trip = db.session.query(RestTrip).filter_by(rest_id=rest_id,
+                                                     trip_id=trip_id).one()
+    db.session.delete(rest_trip)
+    db.session.commit()
 
-    rest_record = db.session.query(Restaurant.rest_id).filter_by(rest_id=rest_id).first()
-    if rest_record:
-        db.session.add(rest_trip)
-        db.session.commit()
-    else:
-        db.session.add(restaurant)
-        db.session.add(rest_trip)
-        db.session.commit()
 
     return jsonify({"rest_id": rest_id})
 
@@ -322,17 +318,42 @@ def add_bar():
     bar_id = request.form.get("id")
     trip_id = request.form.get("trip_id")
 
-    bar = Bar(bar_url=url,
-              bar_name=name,
-              bar_lat=lat,
-              bar_long=long,
-              bar_city=city,
-              bar_id=bar_id)
-
     bar_trip = BarTrip(bar_id=bar_id, trip_id=trip_id)
 
-    db.session.add(bar)
-    db.session.add(bar_trip)
+    bar_record = db.session.query(Bar.bar_id).filter_by(bar_id=bar_id).first()
+    if bar_record:
+        db.session.add(bar_trip)
+        db.session.commit()
+    else:
+        bar = Bar(bar_url=url,
+                  bar_name=name,
+                  bar_lat=lat,
+                  bar_long=long,
+                  bar_city=city,
+                  bar_id=bar_id)
+
+        db.session.add(bar)
+        db.session.commit()
+        db.session.add(bar_trip)
+        db.session.commit()
+
+    return jsonify({"bar_id": bar_id})
+
+
+                ############################################
+                ##          delete bar from trip          ##
+                ############################################
+
+@app.route('/delete-bar', methods=['POST'])
+def delete_bar():
+    """Delete a bar from trip/itinerary."""
+
+    bar_id = request.form.get("id")
+    trip_id = request.form.get("trip_id")
+
+    bar_trip = db.session.query(BarTrip).filter_by(bar_id=bar_id,
+                                                   trip_id=trip_id).one()
+    db.session.delete(bar_trip)
     db.session.commit()
 
     return jsonify({"bar_id": bar_id})
@@ -354,17 +375,42 @@ def add_activity():
     act_id = request.form.get("id")
     trip_id = request.form.get("trip_id")
 
-    activity = Activity(act_url=url,
-                        act_name=name,
-                        act_lat=lat,
-                        act_long=long,
-                        act_city=city,
-                        act_id=act_id)
-
     act_trip = ActTrip(act_id=act_id, trip_id=trip_id)
+    act_record = db.session.query(Activity.act_id).filter_by(act_id=act_id).first()
 
-    db.session.add(activity)
-    db.session.add(act_trip)
+    if act_record:
+        db.session.add(act_trip)
+        db.session.commit()
+    else:
+        activity = Activity(act_url=url,
+                            act_name=name,
+                            act_lat=lat,
+                            act_long=long,
+                            act_city=city,
+                            act_id=act_id)
+
+        db.session.add(activity)
+        db.session.commit()
+        db.session.add(act_trip)
+        db.session.commit()
+
+    return jsonify({"act_id": act_id})
+
+
+                ############################################
+                ##       delete activity from trip        ##
+                ############################################
+
+@app.route('/delete-activity', methods=['POST'])
+def delete_activity():
+    """Delete an activity from trip/itinerary."""
+
+    act_id = request.form.get("id")
+    trip_id = request.form.get("trip_id")
+
+    act_trip = db.session.query(ActTrip).filter_by(act_id=act_id,
+                                                   trip_id=trip_id).one()
+    db.session.delete(act_trip)
     db.session.commit()
 
     return jsonify({"act_id": act_id})

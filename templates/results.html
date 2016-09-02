@@ -116,7 +116,7 @@ many as you would like.</h4>
 {% endif %}
 {% endif %}
 
-<a class="btn" href='/trip/'>View Saved Trip</a><br>
+<a class="btn" href='/trip/{{trip_id}}'>View Saved Trip</a><br>
 
 <div class="yelpbutton">
 <a href="http://www.yelp.com">
@@ -150,6 +150,9 @@ function sendRestaurantInfo(evt) {
     "id": this.id,
     "trip_id": this.dataset.trip_id
   };
+  var buttonText = $(this).html();
+  console.log("send function");
+  console.log(buttonText);
   if (buttonText === "Add") {
     $.post('/add-restaurant', payload, toggledRestaurant);
   }
@@ -161,8 +164,22 @@ function sendRestaurantInfo(evt) {
 
 $('.rest-btn').on('click', sendRestaurantInfo);
 
-function addedBar(result) {
+
+
+
+function toggledBar(result) {
   console.log(result);
+  var barId = result["bar_id"];
+  var barButton = $("#"+barId);
+  console.log(barButton);
+  var buttonText = barButton.html();
+  console.log(buttonText);
+  if (buttonText === "Add"){
+    barButton.html("Remove");
+  }
+  else {
+    barButton.html("Add");
+  }
 }
 
 function sendBarInfo(evt) {
@@ -175,14 +192,36 @@ function sendBarInfo(evt) {
     "id": this.id,
     "trip_id": this.dataset.trip_id
   };
-$.post('/add-bar', payload, addedBar);
+  var buttonText = $(this).html();
+  console.log("send function");
+  console.log(buttonText);
+  if (buttonText === "Add") {
+    $.post('/add-bar', payload, toggledBar);
+  }
+  else {
+    $.post('/delete-bar', payload, toggledBar);
+  }
+  
 }
 
 $('.bar-btn').on('click', sendBarInfo);
 
 
-function addedActivity(result) {
+
+
+function toggledActivity(result) {
   console.log(result);
+  var actId = result["act_id"];
+  var actButton = $("#"+actId);
+  console.log(actButton);
+  var buttonText = actButton.html();
+  console.log(buttonText);
+  if (buttonText === "Add"){
+    actButton.html("Remove");
+  }
+  else {
+    actButton.html("Add");
+  }
 }
 
 function sendActivityInfo(evt) {
@@ -195,7 +234,16 @@ function sendActivityInfo(evt) {
     "id": this.id,
     "trip_id": this.dataset.trip_id
   };
-$.post('/add-activity', payload, addedActivity);
+  var buttonText = $(this).html();
+  console.log("send function");
+  console.log(buttonText);
+  if (buttonText === "Add") {
+    $.post('/add-activity', payload, toggledActivity);
+  }
+  else {
+    $.post('/delete-activity', payload, toggledActivity);
+  }
+  
 }
 
 $('.act-btn').on('click', sendActivityInfo);

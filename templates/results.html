@@ -125,15 +125,20 @@ many as you would like.</h4>
 
 <script type="text/javascript">
 
-function addedRestaurant(result) {
+function toggledRestaurant(result) {
   console.log(result);
-  $('.rest-btn').toggle(function (){
-       $(this).attr('value', 'Add');
-    }, function(){
-    $(this).attr('value', 'Remove');
-});
+  var restId = result["rest_id"];
+  var restButton = $("#"+restId);
+  console.log(restButton);
+  var buttonText = restButton.html();
+  console.log(buttonText);
+  if (buttonText === "Add"){
+    restButton.html("Remove");
+  }
+  else {
+    restButton.html("Add");
+  }
 }
-
 
 function sendRestaurantInfo(evt) {
   var payload = {
@@ -145,7 +150,13 @@ function sendRestaurantInfo(evt) {
     "id": this.id,
     "trip_id": this.dataset.trip_id
   };
-$.post('/add-restaurant', payload, addedRestaurant);
+  if (buttonText === "Add") {
+    $.post('/add-restaurant', payload, toggledRestaurant);
+  }
+  else {
+    $.post('/delete-restaurant', payload, toggledRestaurant);
+  }
+  
 }
 
 $('.rest-btn').on('click', sendRestaurantInfo);

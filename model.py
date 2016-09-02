@@ -42,9 +42,18 @@ class Trip(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
     # Define relationship to restaurants, bars, activities and user
-    restaurants = db.relationship("Restaurant", backref=db.backref("trips"))
-    bars = db.relationship("Bar", backref=db.backref("trips"))
-    activities = db.relationship("Activity", backref=db.backref("trips"))
+    restaurants = db.relationship("Restaurant",
+                                  secondary="restaurants_trips",
+                                  backref="trips")
+
+    bars = db.relationship("Bar",
+                           secondary="bars_trips",
+                           backref="trips")
+
+    activities = db.relationship("Activity",
+                                 secondary="activities_trips",
+                                 backref="trips")
+
     user = db.relationship("User", backref=db.backref("trips"))
 
     def __repr__(self):
@@ -64,12 +73,32 @@ class Restaurant(db.Model):
     rest_lat = db.Column(db.String(50), nullable=False)
     rest_long = db.Column(db.String(40), nullable=False)
     rest_city = db.Column(db.String(40), nullable=False)
-    trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return "%s" % (self.rest_name)
+
+
+class RestTrip(db.Model):
+    """Specific restaurant in a trip."""
+
+    __tablename__ = "restaurants_trips"
+
+    rest_trip_id = db.Column(db.Integer,
+                             autoincrement=True,
+                             primary_key=True)
+    rest_id = db.Column(db.String(100),
+                        db.ForeignKey('restaurants.rest_id'),
+                        nullable=False)
+    trip_id = db.Column(db.Integer,
+                        db.ForeignKey('trips.trip_id'),
+                        nullable=False)
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return "%s" % (self.rest_id)
 
 
 class Bar(db.Model):
@@ -83,12 +112,32 @@ class Bar(db.Model):
     bar_lat = db.Column(db.String(40), nullable=False)
     bar_long = db.Column(db.String(40), nullable=False)
     bar_city = db.Column(db.String(40), nullable=False)
-    trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return "%s" % (self.bar_name)
+
+
+class BarTrip(db.Model):
+    """Specific bar in a trip."""
+
+    __tablename__ = "bars_trips"
+
+    bar_trip_id = db.Column(db.Integer,
+                            autoincrement=True,
+                            primary_key=True)
+    bar_id = db.Column(db.String(100),
+                       db.ForeignKey('bars.bar_id'),
+                       nullable=False)
+    trip_id = db.Column(db.Integer,
+                        db.ForeignKey('trips.trip_id'),
+                        nullable=False)
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return "%s" % (self.bar_id)
 
 
 class Activity(db.Model):
@@ -102,15 +151,36 @@ class Activity(db.Model):
     act_lat = db.Column(db.String(40), nullable=False)
     act_long = db.Column(db.String(40), nullable=False)
     act_city = db.Column(db.String(40), nullable=False)
-    trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return "%s" % (self.act_name)
 
+
+class ActTrip(db.Model):
+    """Specific activity in a trip."""
+
+    __tablename__ = "activities_trips"
+
+    act_trip_id = db.Column(db.Integer,
+                            autoincrement=True,
+                            primary_key=True)
+    act_id = db.Column(db.String(100),
+                       db.ForeignKey('activities.act_id'),
+                       nullable=False)
+    trip_id = db.Column(db.Integer,
+                        db.ForeignKey('trips.trip_id'),
+                        nullable=False)
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return "%s" % (self.act_id)
+
+
                 #################################
-                #        Helper functions       #
+                ##       Helper functions      ##
                 #################################
 
 

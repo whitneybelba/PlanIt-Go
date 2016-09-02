@@ -2,7 +2,7 @@
 
 from sqlalchemy import func
 
-from model import User, Trip, Restaurant, Bar, Activity, connect_to_db, db
+from model import User, Trip, Restaurant, Bar, Activity, RestTrip, BarTrip, ActTrip, connect_to_db, db
 from server import app
 
 
@@ -56,18 +56,74 @@ def load_restaurants():
 
     for row in open("seed_data/u.restaurant"):
         row = row.rstrip()
-        rest_id, rest_url, rest_name, rest_lat, rest_long, rest_city, trip_id = row.split("|")
+        rest_id, rest_url, rest_name, rest_lat, rest_long, rest_city, = row.split("|")
 
         restaurant = Restaurant(rest_id=rest_id,
                                 rest_url=rest_url,
                                 rest_name=rest_name,
                                 rest_lat=rest_lat,
                                 rest_long=rest_long,
-                                rest_city=rest_city,
-                                trip_id=trip_id)
+                                rest_city=rest_city)
 
         # We need to add to the session or it won't ever be stored
         db.session.add(restaurant)
+
+    # Once we're done, we should commit our work
+    db.session.commit()
+
+
+def load_rest_trip():
+    """Load restaurant_id/trip_id from u.rest-trip into database."""
+
+    print "RestTrip"
+
+    for row in open("seed_data/u.rest-trip"):
+        row = row.rstrip()
+        rest_id, trip_id = row.split("|")
+
+        resttrip = RestTrip(rest_id=rest_id,
+                            trip_id=trip_id)
+
+        # We need to add to the session or it won't ever be stored
+        db.session.add(resttrip)
+
+    # Once we're done, we should commit our work
+    db.session.commit()
+
+
+def load_bar_trip():
+    """Load bar_id/trip_id from u.bar-trip into database."""
+
+    print "BarTrip"
+
+    for row in open("seed_data/u.bar-trip"):
+        row = row.rstrip()
+        bar_id, trip_id = row.split("|")
+
+        bartrip = BarTrip(bar_id=bar_id,
+                          trip_id=trip_id)
+
+        # We need to add to the session or it won't ever be stored
+        db.session.add(bartrip)
+
+    # Once we're done, we should commit our work
+    db.session.commit()
+
+
+def load_act_trip():
+    """Load act_id/trip_id from u.act-trip into database."""
+
+    print "ActTrip"
+
+    for row in open("seed_data/u.act-trip"):
+        row = row.rstrip()
+        act_id, trip_id = row.split("|")
+
+        acttrip = ActTrip(act_id=act_id,
+                          trip_id=trip_id)
+
+        # We need to add to the session or it won't ever be stored
+        db.session.add(acttrip)
 
     # Once we're done, we should commit our work
     db.session.commit()
@@ -80,15 +136,14 @@ def load_bars():
 
     for row in open("seed_data/u.bar"):
         row = row.rstrip()
-        bar_id, bar_url, bar_name, bar_lat, bar_long, bar_city, trip_id = row.split("|")
+        bar_id, bar_url, bar_name, bar_lat, bar_long, bar_city = row.split("|")
 
         bar = Bar(bar_id=bar_id,
                   bar_url=bar_url,
                   bar_name=bar_name,
                   bar_lat=bar_lat,
                   bar_long=bar_long,
-                  bar_city=bar_city,
-                  trip_id=trip_id)
+                  bar_city=bar_city)
 
         # We need to add to the session or it won't ever be stored
         db.session.add(bar)
@@ -104,15 +159,14 @@ def load_activities():
 
     for row in open("seed_data/u.activity"):
         row = row.rstrip()
-        act_id, act_url, act_name, act_lat, act_long, act_city, trip_id = row.split("|")
+        act_id, act_url, act_name, act_lat, act_long, act_city = row.split("|")
 
         activity = Activity(act_id=act_id,
                             act_url=act_url,
                             act_name=act_name,
                             act_lat=act_lat,
                             act_long=act_long,
-                            act_city=act_city,
-                            trip_id=trip_id)
+                            act_city=act_city)
 
         # We need to add to the session or it won't ever be stored
         db.session.add(activity)
@@ -143,4 +197,7 @@ if __name__ == "__main__":
     load_restaurants()
     load_bars()
     load_activities()
+    load_bar_trip()
+    load_rest_trip()
+    load_act_trip()
     set_val_user_id()

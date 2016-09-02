@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from api_call import search_yelp
 from jinja2 import StrictUndefined
 from model import connect_to_db, db, User, Restaurant, Bar, Activity, Trip
+from model import RestTrip, ActTrip, BarTrip
 
 
 
@@ -258,18 +259,51 @@ def add_restaurant():
     rest_id = request.form.get("id")
     trip_id = request.form.get("trip_id")
 
-    restaurant = Restaurant(trip_id=trip_id,
-                            rest_url=url,
-                            rest_name=name,
-                            rest_lat=lat,
-                            rest_long=long,
-                            rest_city=city,
-                            rest_id=rest_id)
+    rest_trip = RestTrip(rest_id=rest_id, trip_id=trip_id)
 
-    db.session.add(restaurant)
-    db.session.commit()
+    rest_record = db.session.query(Restaurant.rest_id).filter_by(rest_id=rest_id).first()
+    if rest_record:
+        db.session.add(rest_trip)
+        db.session.commit()
+    else:
+        restaurant = Restaurant(rest_url=url,
+                                rest_name=name,
+                                rest_lat=lat,
+                                rest_long=long,
+                                rest_city=city,
+                                rest_id=rest_id)
 
-    return "Success!"
+        db.session.add(restaurant)
+        db.session.add(rest_trip)
+        db.session.commit()
+
+    return jsonify({"rest_id": rest_id})
+
+
+                ############################################
+                ##      delete restaurant from trip       ##
+                ############################################
+
+@app.route('/delete-restaurant', methods=['POST'])
+def delete_restaurant():
+    """Delete a restaurant from trip/itinerary."""
+
+    rest_id = request.form.get("id")
+    trip_id = request.form.get("trip_id")
+
+    rest_trip = RestTrip(rest_id=rest_id, trip_id=trip_id)
+
+    rest_record = db.session.query(Restaurant.rest_id).filter_by(rest_id=rest_id).first()
+    if rest_record:
+        db.session.add(rest_trip)
+        db.session.commit()
+    else:
+        db.session.add(restaurant)
+        db.session.add(rest_trip)
+        db.session.commit()
+
+    return jsonify({"rest_id": rest_id})
+
 
                 ############################################
                 ##            add bar to trip             ##
@@ -288,18 +322,20 @@ def add_bar():
     bar_id = request.form.get("id")
     trip_id = request.form.get("trip_id")
 
-    bar = Bar(trip_id=trip_id,
-              bar_url=url,
+    bar = Bar(bar_url=url,
               bar_name=name,
               bar_lat=lat,
               bar_long=long,
               bar_city=city,
               bar_id=bar_id)
 
+    bar_trip = BarTrip(bar_id=bar_id, trip_id=trip_id)
+
     db.session.add(bar)
+    db.session.add(bar_trip)
     db.session.commit()
 
-    return "Success!"
+    return jsonify({"bar_id": bar_id})
 
 
                 ############################################
@@ -318,18 +354,20 @@ def add_activity():
     act_id = request.form.get("id")
     trip_id = request.form.get("trip_id")
 
-    activity = Activity(trip_id=trip_id,
-                        act_url=url,
+    activity = Activity(act_url=url,
                         act_name=name,
                         act_lat=lat,
                         act_long=long,
                         act_city=city,
                         act_id=act_id)
 
+    act_trip = ActTrip(act_id=act_id, trip_id=trip_id)
+
     db.session.add(activity)
+    db.session.add(act_trip)
     db.session.commit()
 
-    return "Success!"
+    return jsonify({"act_id": act_id})
 
 
 if __name__ == "__main__":

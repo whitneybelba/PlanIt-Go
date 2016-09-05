@@ -38,7 +38,7 @@ def get_choices():
 
     user_id = session["user_id"]
 
-    trip = Trip(user_id=user_id, name=trip_name, city=location[0:-3].title())
+    trip = Trip(user_id=user_id, name=trip_name, city=location[0:-2].title())
 
     db.session.add(trip)
     db.session.commit()

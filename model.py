@@ -77,7 +77,7 @@ class Restaurant(db.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "%s" % (self.rest_name)
+        return "%s, %s, %s" % (self.rest_name, self.rest_url, self.rest_city)
 
 
 class RestTrip(db.Model):

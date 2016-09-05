@@ -6,35 +6,78 @@
 
 <h3>Restaurants:</h3>
 
-{% for restaurant in trip.restaurants %}
-
-<h4>{{ restaurant }}</h4>
-
-{% endfor %}
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for restaurant in trip.restaurants %}
+      <tr>
+        <td><a href="{{ restaurant.rest_url }}" target="_blank">
+            {{ restaurant.rest_name }}</a></td>
+        <td>{{ restaurant.rest_city }}</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 
 {% if trip.bars %}
 
 <h3>Bars:</h3>
 
-{% for bar in trip.bars %}
-
-<h4>{{ bar }}</h4>
-
-{% endfor %}
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Bar Name</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for bar in trip.bars %}
+      <tr>
+        <td><a href="{{ bar.bar_url }}" target="_blank">
+            {{ bar.bar_name }}</a></td>
+        <td>{{ bar.bar_city }}</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 
 {% if trip.activities %}
 
 <h3>Activities:</h3>
 
-{% for activity in trip.activities %}
-
-<h4>{{ activity }}</h4>
-
-{% endfor %}
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Activity Name</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for activity in trip.activities %}
+      <tr>
+        <td><a href="{{ activity.act_url }}" target="_blank">
+            {{ activity.act_name }}</a></td>
+        <td>{{ activity.act_city }}</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 
 <a class="btn" href="/profile">Back to profile</a>
 
 {% endblock %}
+

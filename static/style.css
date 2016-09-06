@@ -41,6 +41,13 @@ h3 {
   padding-bottom: 5px;
 }
 
+h4 {
+  color: white;
+  font-family: 'Quando', serif;
+  font-size: 120%;
+  padding-bottom: 2px;
+}
+
 p {
   font-family: 'Prompt', sans-serif;
   font-size: 110%;
@@ -56,6 +63,9 @@ p {
   border-color: #50b99b;
 }
 
+.navbar-default {
+  border: 0;
+}
 
 .navbar-default .navbar-brand {
   color: white;
@@ -92,6 +102,8 @@ p {
   background-color: #ccebe2;
   color: #2a3037;
   font-size: 90%;
+  width:250px;
+  margin-bottom: 5px;
 }
 
 
@@ -100,7 +112,7 @@ p {
      height: 700px;
      width: 100%;
      background-size: cover;
-     padding-top: 70px;
+     padding-top: 40px;
 }
 
 
@@ -109,13 +121,13 @@ p {
      height: 700px;
      width: 100%;
      background-size: cover;
-     padding-top: 70px;
+     padding-top: 40px;
 }
 
 .inner-div
 {
      margin: auto;
-     padding-top: 60px;
+     padding-top: 55px;
      width: 325px;
      height: 450px; 
      background-color: rgba(42, 48, 55, .8); 
@@ -128,9 +140,10 @@ p {
 .inner-div2
 {
      margin: auto;
-     padding-top: 40px;
+     padding-top: 35px;
+     padding-bottom: 35px;
      width: 400px;
-     height: 550px; 
+     min-height: 100px; 
      background-color: rgba(42, 48, 55, .8); 
      color: white;
      text-align: center;
@@ -165,9 +178,9 @@ p {
 .inner-div5
 {
      margin: auto;
-     padding-top: 30px;
+     padding-top: 40px;
      width: 1200px;
-     min-height:100px;
+     min-height:600px;
      background-color: rgba(42, 48, 55, .8); 
      color: white;
      text-align: center;
@@ -175,19 +188,40 @@ p {
 }
 
 .container2 {
- border:2px solid #50b99b; 
+ border:1px solid #50b99b; 
  width:300px; 
- height: 150px; 
+ height: 190px; 
  overflow-y: scroll; 
  font-family: 'Prompt', sans-serif;
  font-size: 100%;
+ display: inline-block;
+ margin-right: 20px;
+ margin-left: 20px;
+ padding: 10px;
+}
+
+
+#container {
+    width:90%;
+    height: 210px;
+    margin: 0 auto;
+    text-align:center;
 }
 
 
 .checkbox2 {
-    height: 15px;
+    height: 20px;
 }
 
+
+.dropdownmenu {
+    background-color: #50b99b;
+    font-family: 'Prompt', sans-serif;
+    font-size: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
 
  .btn {
   background-color: #50b99b;
@@ -201,7 +235,6 @@ p {
   font-family: 'Prompt', sans-serif;
   font-size: 115%;
  }
-
 
 
 
@@ -247,3 +280,8 @@ p {
   font-family: 'Prompt', sans-serif;
   font-size: 100%;
  }
+
+ .yelpbutton {
+  margin: 20px;
+ }
+

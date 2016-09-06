@@ -5,11 +5,9 @@
 <div class="outer-div3">
 <div class="inner-div5">
 
-<h3>Please choose the types of restaurants you like:</h3>
 <form action="/results" method="GET" id="searchform">
-
-<div class="row col-md-4">   
-<div class="container2" id="restcheckbox"> 
+<div id="container"> 
+<div id="left" class="container2" id="restcheckbox"> 
     <label class="checkbox2">
         <input type="checkbox" name="restaurant" value="restaurants" checked> All Restaurants (best rated)
     </label><br>
@@ -118,12 +116,9 @@
     <label class="checkbox2">
         <input type="checkbox" name="restaurant" value="vietnamese"> Vietnamese
     </label>
-</div><br><br>
 </div>
 
-<h3>Please choose the types of bars you like:</h3>
-<div class="row offset-4 col-md-4">    
-<div class="container2">
+<div id="center" class="container2">
     <label class="checkbox2">
         <input type="checkbox" name="bar" value="bars" checked> All Bars (best rated)
     </label><br>
@@ -160,15 +155,12 @@
     <label class="checkbox2">
         <input type="checkbox" name="bar" value="wine_bars"> Wine Bars
     </label>
-    </div><br><br>
     </div>
 
-<h3>What types of activities would you like to do?</h3>
 
-<div class="row offset-8 col-md-4"> 
-<div class="container2">   
+<div id="right" class="container2">   
     <label class="checkbox2">
-        <input type="checkbox" name="activity" value="active"> All Active Lifestyle (best rated)
+        <input type="checkbox" name="activity" value="active" checked> All Active Lifestyle (best rated)
     </label><br>
     <label class="checkbox2">
         <input type="checkbox" name="activity" value="galleries"> Art Galleries
@@ -222,7 +214,7 @@
         <input type="checkbox" name="activity" value="golf"> Golf
     </label><br>
     <label class="checkbox2">
-        <input type="checkbox" name="activity" value="hiking" checked> Hiking
+        <input type="checkbox" name="activity" value="hiking"> Hiking
     </label><br>
     <label class="checkbox2">
         <input type="checkbox" name="activity" value="horsebackriding"> Horseback Riding
@@ -306,25 +298,25 @@
     <label class="checkbox2">
         <input type="checkbox" name="activity" value="toys"> Toy Stores
     </label><br>
-</div><br><br>
-    </div>
+</div>
+</div>
 
 <div>
     <label>
-        <h3>Please enter a US city to search:</h3> 
+        <h4>Please enter a US city to search:</h4> 
         <input type="text" id="city" class="forminput" name="location" value="Denver"> 
     </label>
 </div>
 
 <div id="state">
-  <select name="state" size="1">
+  <select name="state" size="1" class="dropdownmenu">
       <option value="" selected disabled>Please select a state...</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>
       <option value="AR">Arkansas</option>
       <option value="CA">California</option>
-      <option value="CO">Colorado</option>
+      <option value="CO" selected>Colorado</option>
       <option value="CT">Connecticut</option>
       <option value="DE">Delaware</option>
       <option value="DC">Dist of Columbia</option>
@@ -374,25 +366,25 @@
 </div>
 
 <div>
-    <h3>Size of Search Radius</h3>
-    <select name="radius">
+    <h4>Size of Search Radius</h4>
+    <select name="radius" class="dropdownmenu">
         <option value="8000">5 miles</option>
         <option value="16000">10 miles</option>
         <option value="24000">15 miles</option>
         <option value="32000">20 miles</option>
         <option value="40000">25 miles</option>
     </select>
-</div>
-
-<div>
-    <label>
-        <h3>What would you like to name this trip?</h3> 
-        <input type="text" id="trip-name" class="forminput" name="name" value="Denver for Thanksgiving"> 
-    </label>
-</div>
+    </div>
+    <div> 
+        <h4>What would you like to name this trip?</h4> 
+        <label>
+            <input type="text" id="trip-name" class="forminput" name="name" value="Denver for Thanksgiving"> 
+        </label>
+    </div>
     <div class="submitbtn">
         <input class="btn" type="submit">
     </div>
+</div>
 </form>
 </div>
 </div>

@@ -1,83 +1,97 @@
 {% extends 'base.html' %}
 {% block content %}
-<h4>Trip Details:</h4>
+<div class="outer-div2">
+    <div class="inner-div3">
+        <h2 class="triptitle">Trip Details - {{ trip.name }}</h2>
 
-{% if trip.restaurants %}
+        {% if trip.restaurants %}
 
-<h3>Restaurants:</h3>
+        <h3>Restaurants</h3>
+        <div class="container">
+        <div class="row col-md-8">
+            <div class="tablecenter">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Restaurant Name</th>
+                <th>City</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for restaurant in trip.restaurants %}
+              <tr>
+                <td><a href="{{ restaurant.rest_url }}" target="_blank">
+                    {{ restaurant.rest_name }}</a></td>
+                <td>{{ restaurant.rest_city }}</td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        </div>
+        </div>
+        {% endif %}
 
-<div class="container">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Restaurant Name</th>
-        <th>City</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for restaurant in trip.restaurants %}
-      <tr>
-        <td><a href="{{ restaurant.rest_url }}" target="_blank">
-            {{ restaurant.rest_name }}</a></td>
-        <td>{{ restaurant.rest_city }}</td>
-      </tr>
-        {% endfor %}
-    </tbody>
-  </table>
+    {% if trip.bars %}
+
+        <h3>Bars</h3>
+
+        <div class="container">
+        <div class="row col-md-8">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Bar Name</th>
+                <th>City</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for bar in trip.bars %}
+              <tr>
+                <td><a href="{{ bar.bar_url }}" target="_blank">
+                    {{ bar.bar_name }}</a></td>
+                <td>{{ bar.bar_city }}</td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        </div>
+        {% endif %}
+
+    {% if trip.activities %}
+
+        <h3>Activities</h3>
+
+        <div class="container">
+        <div class="row col-md-8">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Activity Name</th>
+                <th>City</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for activity in trip.activities %}
+              <tr>
+                <td><a href="{{ activity.act_url }}" target="_blank">
+                    {{ activity.act_name }}</a></td>
+                <td>{{ activity.act_city }}</td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% endif %}
+        </div>
+        <div class="submitbtn">
+        <a class="btn" href="/profile">Back to profile</a>
+        </div>
+    </div>
 </div>
-{% endif %}
 
-{% if trip.bars %}
 
-<h3>Bars:</h3>
-
-<div class="container">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Bar Name</th>
-        <th>City</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for bar in trip.bars %}
-      <tr>
-        <td><a href="{{ bar.bar_url }}" target="_blank">
-            {{ bar.bar_name }}</a></td>
-        <td>{{ bar.bar_city }}</td>
-      </tr>
-        {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endif %}
-
-{% if trip.activities %}
-
-<h3>Activities:</h3>
-
-<div class="container">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Activity Name</th>
-        <th>City</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for activity in trip.activities %}
-      <tr>
-        <td><a href="{{ activity.act_url }}" target="_blank">
-            {{ activity.act_name }}</a></td>
-        <td>{{ activity.act_city }}</td>
-      </tr>
-        {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endif %}
-
-<a class="btn" href="/profile">Back to profile</a>
 
 {% endblock %}
 

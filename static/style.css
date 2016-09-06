@@ -2,8 +2,8 @@
 
 body {
     background-image: url("img/vinescopy.jpg");
-    background-color: #4a4b58;
-    height: 800px;
+    background-color: #2a3037;
+    height: 1000px;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -12,49 +12,88 @@ body {
 }
 
 
-.container-fluid {
-  background-color: #50b99b
+a {
+  color:#50b99b;
+  font-family: 'Prompt', sans-serif;
 }
+
+
+h1 {
+  color: white;
+  font-family: 'Quando', serif;
+  font-size: 210%;
+  padding-bottom: 20px;
+}
+
+
+h2 {
+  color: white;
+  font-family: 'Quando', serif;
+  font-size: 150%;
+  padding-bottom: 10px;
+}
+
+
+h3 {
+  color: white;
+  font-family: 'Quando', serif;
+  font-size: 130%;
+  padding-bottom: 5px;
+}
+
+p {
+  font-family: 'Prompt', sans-serif;
+  font-size: 110%;
+}
+
+
+.container-fluid {
+  background-color: #50b99b;
+}
+
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border-color: #50b99b;
 }
+
 
 .navbar-default .navbar-brand {
   color: white;
   font-family: 'Quando', serif;
 }
 
+
 .navbar-default .navbar-nav>li>a {
   color: white;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Prompt', sans-serif;
+  font-size: 110%;
 }
+
 
 .submitbtn {
-  padding: 20px;
+  padding: 25px;
 }
 
-h1 {
-  color: white;
-  font-family: 'Quando', serif;
-  font-size: 250%;
-  padding-bottom: 30px;
-}
 
 .formwords {
   color: white;
-  font-family: 'Signika', sans-serif;
-  font-size: 120%;
+  font-family: 'Prompt', sans-serif;
+  font-size: 115%;
   font-weight: lighter;
   padding: 5px;
 }
 
+
 .forminput {
   padding: 1px;
   border-radius: 4px;
-  font-family: 'Signika', sans-serif;
-
+  font-family: 'Prompt', sans-serif;
+  text-align: center;
+  background-color: #ccebe2;
+  color: #2a3037;
+  font-size: 90%;
 }
+
 
 .outer-div
 {
@@ -62,56 +101,149 @@ h1 {
      width: 100%;
      background-size: cover;
      padding-top: 70px;
+}
 
+
+.outer-div2
+{
+     height: 700px;
+     width: 100%;
+     background-size: cover;
+     padding-top: 70px;
 }
 
 .inner-div
 {
      margin: auto;
-     padding-top: 70px;
+     padding-top: 60px;
      width: 325px;
      height: 450px; 
      background-color: rgba(42, 48, 55, .8); 
      color: white;
      text-align: center;
      border-radius: 25px;
-/*     border: 2px solid white;*/
+}
 
+
+.inner-div2
+{
+     margin: auto;
+     padding-top: 40px;
+     width: 400px;
+     height: 550px; 
+     background-color: rgba(42, 48, 55, .8); 
+     color: white;
+     text-align: center;
+     border-radius: 25px;
+}
+
+.inner-div3
+{
+     margin: auto;
+     padding-top: 30px;
+     width: 800px;
+     min-height:100px;
+     background-color: rgba(42, 48, 55, .8); 
+     color: white;
+     text-align: center;
+     border-radius: 25px;
+}
+
+.inner-div4
+{
+     margin: auto;
+     padding-top: 30px;
+     width: 400px;
+     min-height:100px;
+     background-color: rgba(42, 48, 55, .8); 
+     color: white;
+     text-align: center;
+     border-radius: 25px;
+}
+
+
+.inner-div5
+{
+     margin: auto;
+     padding-top: 30px;
+     width: 1200px;
+     min-height:100px;
+     background-color: rgba(42, 48, 55, .8); 
+     color: white;
+     text-align: center;
+     border-radius: 25px;
 }
 
 .container2 {
- border:2px solid #2eb8b8; 
+ border:2px solid #50b99b; 
  width:300px; 
  height: 150px; 
- overflow-y: scroll; }
+ overflow-y: scroll; 
+ font-family: 'Prompt', sans-serif;
+ font-size: 100%;
+}
 
 
 .checkbox2 {
     height: 15px;
 }
 
+
  .btn {
   background-color: #50b99b;
   color: white;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Prompt', sans-serif;
+  font-size: 110%
  }
+
+
+ .extrawords {
+  font-family: 'Prompt', sans-serif;
+  font-size: 115%;
+ }
+
+
+
 
  .rest-btn {
-  background-color: #22928f;
+  background-color: #50b99b;
   color: white;
  }
+
 
 .bar-btn {
-  background-color: #2eb8b8;
+  background-color: #50b99b;
   color: white;
  }
+
 
 .act-btn {
-  background-color: #2eb8b8;
+  background-color: #50b99b;
   color: white;
  }
 
+ .tablecenter {
+    margin: auto;
+ }
+
+.table-bordered
+{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border-collapse: inherit;
+    text-align: center;
+    margin: auto;
+    table-layout: fixed;
+    width: 600px;
+    font-family: 'Prompt', sans-serif;
+    font-size: 100%;
+}
+
  th {
-  background-color: #2eb8b8;
+  background-color: #50b99b;
   color: white;
+  text-align: center;
+  font-family: 'Prompt', sans-serif;
+  font-size: 100%;
  }

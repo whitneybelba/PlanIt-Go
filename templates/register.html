@@ -2,39 +2,43 @@
 {% block content %}
 
 <title>Register</title>
-<h2>Register</h2>
+<div class="outer-div">
+    <div class="inner-div2">
+<h1>Register</h1>
 
 <form action="register" method="POST">
-
-    <div>
+    <div class="formwords">
         <label>
-            First Name
-            <input type="text" name="fname">
+            First Name <br>
+            <input type="text" class="forminput" name="fname">
         </label>
     </div>
-    <div>
+    <div class="formwords">
         <label>
-            Last Name
-            <input type="text" name="lname">
+            Last Name <br>
+            <input type="text" class="forminput" name="lname">
         </label>
     </div>
-    <div>
+    <div class="formwords">
         <label>
-            Email
-            <input type="email" name="email">
+            Email <br>
+            <input type="email" class="forminput" name="email">
         </label>
     </div>
-
-    <div>
+    <div class="formwords">
         <label>
-            Password
-            <input type="password" name="password">
+            Password <br>
+            <input type="password" class="forminput" name="password">
         </label>
     </div>
-        <input type="submit" value="Register">
+    <div class="submitbtn">
+        <input class="btn" type="submit" value="Register">
     </div>
-
 </form>
-<p>Already registered?<a href="/">Login</a></p>
+
+<div class="extrawords">
+<p>Already registered?<br><a href="/">Login</a></p>
+</div>
+</div>
 
 {% endblock %}

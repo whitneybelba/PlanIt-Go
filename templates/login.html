@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
+<title>Login</title>
 <div class="outer-div">
     <div class="inner-div">
+
     <h1>Login</h1>
+
     <form action="/login" method="POST">
         <div class="formwords">
-            <label>email <br>
+            <label>Email <br>
                 <input type="email" class="forminput" name="email" required>
             </label>
         </div>
 
         <div class="formwords">
-            <label>password <br>
+            <label>Password <br>
                 <input type="password" class="forminput" name="password" required>
             </label>
         </div>
@@ -20,7 +23,11 @@
             <input class="btn" type="submit" value="Log In">
         </div>
     </form>
-    Not a user yet?<a href="/"> register</a>
+
+    <div class="extrawords">
+        Not a user yet?<a href="/register"><br>Register</a>
+    </div>
+
     </div>
 </div>
 {% endblock %}

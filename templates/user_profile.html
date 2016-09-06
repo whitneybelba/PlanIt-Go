@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <title>{{ user }}'s Profile</title>
-    <h3>Hello {{ user }}</h3>
-    {% if trips %}
-    <h4>Here are your saved trips:</h4>
-    {% for trip in trips %}
-    <p><a href="/trip/{{ trip.trip_id }}">{{ trip }}</a></p>
-    {% endfor %}
-    {% endif %}
-    <a class="btn" href="/search">Plan New Trip</a>
+<div class="outer-div2">
+    <div class="inner-div2">
+        <h2>Hello {{ user }}</h2>
+        {% if trips %}
+        <h3>Here are your saved trips:</h3>
+        {% for trip in trips %}
+        <p><a href="/trip/{{ trip.trip_id }}">{{ trip }}</a></p>
+        {% endfor %}
+        {% endif %}
+        <a class="btn" href="/search">Plan New Trip</a>
+    </div>
+</div>
 
 {% endblock %}

@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quando" rel="stylesheet">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,28 +12,28 @@
   <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      {% if "user_id" in session %}<a class="navbar-brand" href="/search">PlanIt+Go</a>
-      {% else %}<a class="navbar-brand" href="/">PlanIt+Go</a>{% endif %}
-    </div>
+      <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          {% if "user_id" in session %}<a class="navbar-brand" href="/search">PlanIt+Go</a>
+          {% else %}<a class="navbar-brand" href="/">PlanIt+Go</a>{% endif %}
+        </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="login-out">{% if "user_id" in session %}<a href="/logout">Logout</a></li>
-            {% else %}<a href="/">Login</a>
-            {% endif %}
-        <li class="register">
-          <a href="/register">Register</span></a></li>
-          <li class="profile">
-          <a href="/profile">My Profile</span></a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="login-out">{% if "user_id" in session %}<a href="/logout">Logout</a></li>
+                {% else %}<a href="/">Login</a>
+                {% endif %}
+            <li class="register">
+              <a href="/register">Register</span></a></li>
+              <li class="profile">
+              <a href="/profile">My Profile</span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+      </nav>
     {% for flash in get_flashed_messages() %}
     {{ flash }}
     {% endfor %}

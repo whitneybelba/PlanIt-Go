@@ -1,22 +1,103 @@
 
+
+body {
+    background-image: url("img/vinescopy.jpg");
+    background-color: #4a4b58;
+    height: 800px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+
+}
+
+
+.container-fluid {
+  background-color: #50b99b
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-color: #50b99b;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+  font-family: 'Quando', serif;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+  font-family: 'Signika', sans-serif;
+}
+
+.submitbtn {
+  padding: 20px;
+}
+
+h1 {
+  color: white;
+  font-family: 'Quando', serif;
+  font-size: 250%;
+  padding-bottom: 30px;
+}
+
+.formwords {
+  color: white;
+  font-family: 'Signika', sans-serif;
+  font-size: 120%;
+  font-weight: lighter;
+  padding: 5px;
+}
+
+.forminput {
+  padding: 1px;
+  border-radius: 4px;
+  font-family: 'Signika', sans-serif;
+
+}
+
+.outer-div
+{
+     height: 700px;
+     width: 100%;
+     background-size: cover;
+     padding-top: 70px;
+
+}
+
+.inner-div
+{
+     margin: auto;
+     padding-top: 70px;
+     width: 325px;
+     height: 450px; 
+     background-color: rgba(42, 48, 55, .8); 
+     color: white;
+     text-align: center;
+     border-radius: 25px;
+/*     border: 2px solid white;*/
+
+}
+
 .container2 {
  border:2px solid #2eb8b8; 
  width:300px; 
  height: 150px; 
- overflow-y: 
- scroll; }
+ overflow-y: scroll; }
+
 
 .checkbox2 {
     height: 15px;
 }
 
  .btn {
-  background-color: #2eb8b8;
+  background-color: #50b99b;
   color: white;
+  font-family: 'Signika', sans-serif;
  }
 
  .rest-btn {
-  background-color: #2eb8b8;
+  background-color: #22928f;
   color: white;
  }
 

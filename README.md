@@ -1,5 +1,23 @@
-+# hb-travel-activity-app
-+![image](https://cloud.githubusercontent.com/assets/18336485/17840640/43146a3c-67c1-11e6-9c3b-cc03b00f69b2.png)
-+![image](https://cloud.githubusercontent.com/assets/18336485/17840639/43137c58-67c1-11e6-93b4-bd5bc0b78616.png)
-+![image](https://cloud.githubusercontent.com/assets/18336485/17840641/4317675a-67c1-11e6-8316-2dce6fcfaef7.png)
-+![image](https://cloud.githubusercontent.com/assets/18336485/17840642/4317d712-67c1-11e6-8b90-341662ce9efa.png)
+<snippet>
+  <content><![CDATA[
+# ${1:Project Name}
+TODO: Write a project description
+## Installation
+TODO: Describe the installation process
+## Usage
+TODO: Write usage instructions
+## Contributing
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+## History
+TODO: Write history
+## Credits
+TODO: Write credits
+## License
+TODO: Write license
+]]></content>
+  <tabTrigger>readme</tabTrigger>
+</snippet>

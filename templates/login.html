@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="outer-div">
+    <div class="inner-div">
     <h1>Login</h1>
     <form action="/login" method="POST">
-        <div>
-            <label>Email:
-                <input type="email" name="email" required>
+        <div class="formwords">
+            <label>email <br>
+                <input type="email" class="forminput" name="email" required>
             </label>
         </div>
 
-        <div>
-            <label>Password:
-                <input type="password" name="password" required>
+        <div class="formwords">
+            <label>password <br>
+                <input type="password" class="forminput" name="password" required>
             </label>
         </div>
 
-        <div>
-            <input type="submit" value="Log In">
+        <div class="submitbtn">
+            <input class="btn" type="submit" value="Log In">
         </div>
     </form>
-    <p>Not a user yet?<a href="/">Register</a></p>
+    Not a user yet?<a href="/"> register</a>
+    </div>
+</div>
 {% endblock %}

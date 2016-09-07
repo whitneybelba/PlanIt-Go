@@ -65,8 +65,10 @@ p {
   background-color: #50b99b;
 }
 
+
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-  vertical-align: bottom;
+  vertical-align: middle;
+  padding: 4px;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -111,7 +113,7 @@ p {
   text-align: center;
   background-color: #ccebe2;
   color: #2a3037;
-  font-size: 90%;
+  font-size: 100%;
   width:250px;
   margin-bottom: 5px;
 }
@@ -150,7 +152,7 @@ p {
 .inner-div2
 {
      margin: auto;
-     padding-top: 35px;
+     padding-top: 20px;
      padding-bottom: 35px;
      width: 400px;
      min-height: 100px; 
@@ -163,7 +165,7 @@ p {
 .inner-div3
 {
      margin: auto;
-     padding-top: 30px;
+     padding-top: 20px;
      width: 800px;
      min-height:100px;
      background-color: rgba(42, 48, 55, .8); 
@@ -213,7 +215,7 @@ p {
 
 #container {
     width:90%;
-    height: 210px;
+    height: 220px;
     margin: 0 auto;
     text-align:center;
 }
@@ -223,6 +225,10 @@ p {
     height: 20px;
 }
 
+.container2 h4 {
+  color: #50b99b;
+  margin-top: 0;
+}
 
 .dropdownmenu {
     background-color: #50b99b;
@@ -295,7 +301,7 @@ p {
     width: 1100px;
     font-family: 'Prompt', sans-serif;
     font-size: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
  th {
@@ -313,5 +319,7 @@ p {
 
  .yelpbutton {
   margin: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
  }
 

@@ -33,7 +33,7 @@
         <td width= "12%">{{ restaurant['review_count']}}</td>
         <td width= "20%">{{ restaurant['location']['city'] }}</td>
         <td width="26%">{{ restaurant['category'] }}</td>
-        <td width="10%"><button type="button" id="{{ restaurant['id'] }}" data-trip_id={{ trip_id }} data-long={{ restaurant['location']['coordinate']['longitude'] }} data-lat={{ restaurant['location']['coordinate']['latitude'] }} data-name="{{ restaurant['name'] }}" data-url={{ restaurant['url'] }} data-location={{ restaurant['location']['city'] }} class="rest-btn">Add</button></td>
+        <td width="10%"><button type="button" id="{{ restaurant['id'] }}" data-trip_id={{ trip_id }} data-long={{ restaurant['location']['coordinate']['longitude'] }} data-lat={{ restaurant['location']['coordinate']['latitude'] }} data-name="{{ restaurant['name'] }}" data-url={{ restaurant['url'] }} data-location={{ restaurant['location']['city'] }} class="rest-btn btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -67,7 +67,7 @@
         <td>{{ bar['review_count']}}</td>
         <td>{{ bar['location']['city'] }}</td>
         <td>{{ bar['category'] }}</td>
-        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate']['longitude'] }} data-lat={{ bar['location']['coordinate']['latitude'] }} data-url={{ bar['url'] }} data-name="{{ bar['name'] }}" data-location={{ bar['location']['city'] }} class="bar-btn">Add</button></td>
+        <td><button type="button" id="{{ bar['id'] }}" data-trip_id={{ trip_id }} data-long={{ bar['location']['coordinate']['longitude'] }} data-lat={{ bar['location']['coordinate']['latitude'] }} data-url={{ bar['url'] }} data-name="{{ bar['name'] }}" data-location={{ bar['location']['city'] }} class="bar-btn btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -101,7 +101,7 @@
         <td>{{ activity['review_count']}}</td>
         <td>{{ activity['location']['city'] }}</td>
         <td>{{ activity['category'] }}</td>
-        <td><button type="button" id="{{ activity['id'] }}" data-trip_id={{ trip_id }} data-long={{ activity['location']['coordinate']['longitude'] }} data-lat={{ activity['location']['coordinate']['latitude'] }} data-name="{{ activity['name'] }}" data-url={{ activity['url'] }} data-location={{ activity['location']['city'] }} class="act-btn">Add</button></td>
+        <td><button type="button" id="{{ activity['id'] }}" data-trip_id={{ trip_id }} data-long={{ activity['location']['coordinate']['longitude'] }} data-lat={{ activity['location']['coordinate']['latitude'] }} data-name="{{ activity['name'] }}" data-url={{ activity['url'] }} data-location={{ activity['location']['city'] }} class="act-btn btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}
@@ -114,7 +114,7 @@
 <a class="btn" href='/trip/{{trip_id}}'>View Saved Trip</a><br>
 
 <div class="yelpbutton">
-<a href="http://www.yelp.com">
+<a href="http://www.yelp.com" target="_blank">
 <img border="10" alt="Yelp" src="../static/img/yelp_powered_btn_dark.png">
 </a></div>
 </div>

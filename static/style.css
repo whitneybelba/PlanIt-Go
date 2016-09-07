@@ -273,12 +273,32 @@ p {
     font-size: 100%;
 }
 
+#table-bordered
+{
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border-collapse: inherit;
+    text-align: center;
+    margin: auto;
+    table-layout: fixed;
+    width: 1100px;
+    font-family: 'Prompt', sans-serif;
+    font-size: 100%;
+    margin-bottom: 20px;
+}
+
  th {
   background-color: #50b99b;
   color: white;
   text-align: center;
   font-family: 'Prompt', sans-serif;
   font-size: 100%;
+ }
+
+ td {
+  background-color: rgb(42, 48, 55);
+
  }
 
  .yelpbutton {

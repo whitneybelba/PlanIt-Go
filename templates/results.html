@@ -6,14 +6,11 @@
 </head>
 <body>
 <div class="outer-div3">
-<div class="inner-div5">  
-<h4>Please review the tables below. You can link to the Yelp reviews for each business. If 
-you decide you would like to add it to your itinerary, press the add button. You can add as
-many as you would like.</h4>
+<div class="inner-div5">
 {% if restaurant_list %}
 {% if restaurant_list[0] %}            
 <div class="container">
-  <table class="table table-bordered">
+  <table id="table-bordered" class="table table-bordered">
     <thead>
       <tr>
         <th>Restaurant Name</th>
@@ -49,7 +46,7 @@ many as you would like.</h4>
 {% if bar_list %}
 {% if bar_list[0] %}
 <div class="container">
-  <table class="table table-bordered">
+  <table id="table-bordered" class="table table-bordered">
     <thead>
       <tr>
         <th>Bar Name</th>
@@ -83,7 +80,7 @@ many as you would like.</h4>
 {% if activity_list %}
 {% if activity_list[0] %}
 <div class="container">
-  <table class="table table-bordered">
+  <table id="table-bordered" class="table table-bordered">
     <thead>
       <tr>
         <th>Activity/Business Name</th>

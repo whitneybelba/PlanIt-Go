@@ -7,10 +7,7 @@
         {% if trip.restaurants %}
 
         <h3>Restaurants</h3>
-        <div class="container">
-        <div class="row col-md-8">
-            <div class="tablecenter">
-          <table class="table table-bordered">
+          <table class="table table-bordered tablecenter">
             <thead>
               <tr>
                 <th>Restaurant Name</th>
@@ -27,17 +24,11 @@
                 {% endfor %}
             </tbody>
           </table>
-        </div>
-        </div>
-        </div>
         {% endif %}
 
     {% if trip.bars %}
 
         <h3>Bars</h3>
-
-        <div class="container">
-        <div class="row col-md-8">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -55,16 +46,12 @@
                 {% endfor %}
             </tbody>
           </table>
-        </div>
-        </div>
         {% endif %}
 
     {% if trip.activities %}
 
         <h3>Activities</h3>
 
-        <div class="container">
-        <div class="row col-md-8">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -82,9 +69,7 @@
                 {% endfor %}
             </tbody>
           </table>
-        </div>
         {% endif %}
-        </div>
         <div class="submitbtn">
         <a class="btn" href="/profile">Back to profile</a>
         </div>

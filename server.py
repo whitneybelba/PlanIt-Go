@@ -6,7 +6,6 @@ from model import connect_to_db, db, User, Restaurant, Bar, Activity, Trip
 from model import RestTrip, ActTrip, BarTrip
 
 
-
 app = Flask(__name__)
 
 

@@ -4,7 +4,7 @@
 <head>
 
 </head>
-<body>
+<body id="resultsbody">
 <div class="outer-div3">
 <div class="inner-div5">
 {% if restaurant_list %}
@@ -27,13 +27,13 @@
         {% for category in restaurant_list %}
         {% for restaurant in category %}
         <!-- restaurant is a ditionary with lists and dicts in it -->
-        <td><a href="{{ restaurant['url'] }}" target="_blank">
+        <td width= "20%"><a href="{{ restaurant['url'] }}" target="_blank">
         {{ restaurant['name'] }}</a></td>
-        <td><img src="{{ restaurant['rating_img_url'] }}"></td>
-        <td>{{ restaurant['review_count']}}</td>
-        <td>{{ restaurant['location']['city'] }}</td>
-        <td>{{ restaurant['category'] }}</td>
-        <td><button type="button" id="{{ restaurant['id'] }}" data-trip_id={{ trip_id }} data-long={{ restaurant['location']['coordinate']['longitude'] }} data-lat={{ restaurant['location']['coordinate']['latitude'] }} data-name="{{ restaurant['name'] }}" data-url={{ restaurant['url'] }} data-location={{ restaurant['location']['city'] }} class="rest-btn">Add</button></td>
+        <td width= "12%"><img src="{{ restaurant['rating_img_url'] }}"></td>
+        <td width= "12%">{{ restaurant['review_count']}}</td>
+        <td width= "20%">{{ restaurant['location']['city'] }}</td>
+        <td width="26%">{{ restaurant['category'] }}</td>
+        <td width="10%"><button type="button" id="{{ restaurant['id'] }}" data-trip_id={{ trip_id }} data-long={{ restaurant['location']['coordinate']['longitude'] }} data-lat={{ restaurant['location']['coordinate']['latitude'] }} data-name="{{ restaurant['name'] }}" data-url={{ restaurant['url'] }} data-location={{ restaurant['location']['city'] }} class="rest-btn">Add</button></td>
       </tr>
         {% endfor %}
         {% endfor %}

@@ -11,6 +11,13 @@ body {
 
 }
 
+#resultsbody {
+  background-color: rgb(42, 48, 55);
+  background-size: cover;
+  background-image: url("img/vinescopy.jpg");
+  background-repeat: repeat repeat;
+
+}
 
 a {
   color:#50b99b;
@@ -58,6 +65,9 @@ p {
   background-color: #50b99b;
 }
 
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  vertical-align: bottom;
+}
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
   border-color: #50b99b;
